@@ -107,23 +107,23 @@ html {
 
 .section .right h1 {
   color: black;
-  font-size: 35px;
+  font-size: 40px;
   font-family: var(--poppins-semibold);
 }
 
 .section .right h3 {
   color: var(--hint-color);
-  font-size: 15px;
+  font-size: 16px;
   font-family: var(--poppins-regular);
   font-weight: 200;
   margin-top: 10px;
-  width: 300px;
-  margin-bottom: 30px;
+  width: 350px;
+  margin-bottom: 20px;
 }
 
 .section .right h2 {
   color: var(--hint-color);
-  font-size: 15px;
+  font-size: 18px;
   font-family: var(--poppins-medium);
   width: 300px;
   margin-top: 10px;
@@ -131,7 +131,7 @@ html {
 
 .input-wrapper {
   position: relative;
-  width: 350px;
+  width: 370px;
   margin-bottom: 10px;
 }
 
@@ -169,7 +169,7 @@ html {
   color: white;
   font-size: 13px;
   font-family: var(--poppins-semibold);
-  width: 350px;
+  width: 370px;
   margin-top: 30px;
   height: 55px;
   border: none;
