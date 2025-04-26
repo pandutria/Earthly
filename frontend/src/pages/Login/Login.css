@@ -70,15 +70,15 @@ html {
 }
 
 .section .left .logo-container img {
-  width: 80px;
+  width: 55px;
   height: auto;
 }
 
 .section .left .logo-container h1 {
   font-family: var(--poppins-semibold);
   color: white;
-  font-size: 25px;
-  margin-top: 30px;
+  font-size: 20px;
+  margin-top: 20px;
 }
 
 .section .left h2 {

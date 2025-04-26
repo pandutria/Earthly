@@ -1,0 +1,214 @@
+:root {
+    --poppins-semibold: poppins-semibold;
+    --poppins-bold: poppins-bold;
+    --poppins-medium: poppins-medium;
+    --poppins-regular: poppins-regular;
+    --primary-color: #006637;
+    --secondary-color: #67ae6e;
+    --hint-color: #898989;
+    --gray-color: #494949;
+    --bounce-animation: bounce 10s ease-in-out infinite;
+    --transition-hover: all ease-in-out 0.2s;
+  }
+  
+  @font-face {
+    font-family: poppins-semibold;
+    src: url("../../assets/font/poppins_semibold.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-bold;
+    src: url("../../assets/font/poppins_bold.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-medium;
+    src: url("../../assets/font/poppins_medium.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-regular;
+    src: url("../../assets/font/poppins_regular.ttf");
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: white;
+    overflow-x: hidden;
+    font-family: var(--poppins-regular);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .loading-popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    z-index: 999;
+  }
+  
+  
+  .section {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .section .left {
+    width: 50vw;
+    background-image: url('../../assets//images/login.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .section .left .logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 30px;
+    padding-top: 20px;
+  }
+  
+  .section .left .logo-container img {
+    width: 55px;
+    height: auto;
+  }
+  
+  .section .left .logo-container h1 {
+    font-family: var(--poppins-semibold);
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  
+  .section .left h2 {
+    font-family: var(--poppins-semibold);
+    color: white;
+    font-size: 65px;
+    padding-left: 35px;
+    padding-top: 130px;
+  
+  }
+
+  .section .left p {
+    font-family: var(--poppins-regular);
+    padding-left: 35px;
+    width: 650px;
+    padding-top: 15px;
+    font-size: 24px;
+  }
+  
+  .section .right-container  {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 50vw;
+  }
+  
+  .section .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+  }
+  
+  .section .right h1 {
+    color: black;
+    font-size: 40px;
+    font-family: var(--poppins-semibold);
+  }
+  
+  .section .right h3 {
+    color: var(--hint-color);
+    font-size: 16px;
+    font-family: var(--poppins-regular);
+    font-weight: 200;
+    margin-top: 15px;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .section .right h2 {
+    color: var(--hint-color);
+    font-size: 18px;
+    font-family: var(--poppins-medium);
+    width: 300px;
+    margin-top: 10px;
+  }
+  
+  .input-wrapper {
+    position: relative;
+    width: 370px;
+    margin-bottom: 10px;
+  }
+  
+  .input-wrapper input {
+    color: #797979;
+    font-size: 13px;
+    font-family: var(--poppins-regular);
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 5px;
+    height: 45px;
+    background-color: white;
+    border: 1px solid #797979;
+    padding-left: 45px;
+    box-sizing: border-box;
+  }
+  
+  .input-wrapper .input-icon {
+    position: absolute;
+    top: 53%;
+    left: 17px;
+    transform: translateY(-50%);
+    width: 16.5px;
+    height: 17px;
+    pointer-events: none;
+  }
+  
+  .input-wrapper input:focus {
+    outline: none;
+    border: 2.5px solid var(--primary-color);
+  }
+  
+  .section .right button {
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 13px;
+    font-family: var(--poppins-semibold);
+    width: 370px;
+    margin-top: 30px;
+    height: 55px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .section .right h4 {
+    color: #797979;
+    opacity: 60%;
+    font-size: 12px;
+    margin-top: 15px;
+    font-family: var(--poppins-medium);
+  }
+  
+  .section .right span {
+    font-style: italic;
+    color: var(--secondary-color);
+    cursor: pointer;
+  }
+  
