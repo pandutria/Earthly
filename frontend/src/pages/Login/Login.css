@@ -47,71 +47,69 @@ html {
   scroll-behavior: smooth;
 }
 
-.section {
+.login-section {
   height: 100vh;
   display: flex;
   flex-direction: row;
 }
 
-.section .left {
-  width: 100vw;
+.login-left {
+  width: 55vw;
   background-image: url('../../assets/images/login1.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.section .left .logo-container {
+.login-logo-container {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-left: 30px;
-  padding-top: 20px;
+  padding-top: 50px;
 }
 
-.section .left .logo-container img {
+.login-logo-container img {
   width: 55px;
   height: auto;
 }
 
-.section .left .logo-container h1 {
+.login-logo-container h1 {
   font-family: var(--poppins-semibold);
   color: white;
   font-size: 20px;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
-.section .left h2 {
+.login-left h2 {
   font-family: var(--poppins-semibold);
   color: white;
-  font-size: 65px;
+  font-size: 70px;
   padding-left: 35px;
   line-height: 1.1;
-  padding-top: 100px;
-
+  padding-top: 40px;
 }
 
-.section .right-container  {
+.login-right-container {
   justify-content: center;
   align-items: center;
   display: flex;
-  width: 50vw;
+  width: 45vw;
 }
 
-.section .right {
+.login-right {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
-.section .right h1 {
+.login-right h1 {
   color: black;
   font-size: 40px;
   font-family: var(--poppins-semibold);
 }
 
-.section .right h3 {
+.login-right h3 {
   color: var(--hint-color);
   font-size: 16px;
   font-family: var(--poppins-regular);
@@ -121,7 +119,7 @@ html {
   margin-bottom: 20px;
 }
 
-.section .right h2 {
+.login-right h2 {
   color: var(--hint-color);
   font-size: 18px;
   font-family: var(--poppins-medium);
@@ -129,13 +127,13 @@ html {
   margin-top: 10px;
 }
 
-.input-wrapper {
+.login-input-wrapper {
   position: relative;
   width: 370px;
   margin-bottom: 10px;
 }
 
-.input-wrapper input {
+.login-input-wrapper input {
   color: #797979;
   font-size: 13px;
   font-family: var(--poppins-regular);
@@ -149,7 +147,7 @@ html {
   box-sizing: border-box;
 }
 
-.input-wrapper .input-icon {
+.login-input-icon {
   position: absolute;
   top: 53%;
   left: 17px;
@@ -159,13 +157,13 @@ html {
   pointer-events: none;
 }
 
-.input-wrapper input:focus {
+.login-input-wrapper input:focus {
   outline: none;
   border: 2.5px solid var(--primary-color);
 }
 
-.section .right button {
-  background-color: var(--secondary-color);
+.login-right button {
+  background-color: var(--primary-color);
   color: white;
   font-size: 13px;
   font-family: var(--poppins-semibold);
@@ -177,7 +175,7 @@ html {
   cursor: pointer;
 }
 
-.section .right h4 {
+.login-right h4 {
   color: #797979;
   opacity: 60%;
   font-size: 12px;
@@ -185,7 +183,7 @@ html {
   font-family: var(--poppins-medium);
 }
 
-.section .right span {
+.login-right span {
   font-style: italic;
   color: var(--secondary-color);
   cursor: pointer;

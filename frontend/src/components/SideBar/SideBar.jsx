@@ -11,7 +11,7 @@ function SideBar({children}) {
                  <h1>Earthly</h1>
             </div>
             <div>   
-
+                {children}
             </div>
         </div>
     );

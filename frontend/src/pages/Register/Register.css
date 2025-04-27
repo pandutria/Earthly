@@ -69,47 +69,29 @@
   
   .section .left {
     width: 50vw;
-    background-image: url('../../assets//images/login.png');
+    background-image: url('../../assets//images/register.png');
     background-size: cover;
     background-position: center;
+    text-align: end;
     background-repeat: no-repeat;
-  }
-  
-  .section .left .logo-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-left: 30px;
-    padding-top: 20px;
-  }
-  
-  .section .left .logo-container img {
-    width: 55px;
-    height: auto;
-  }
-  
-  .section .left .logo-container h1 {
-    font-family: var(--poppins-semibold);
-    color: white;
-    font-size: 20px;
-    margin-top: 20px;
   }
   
   .section .left h2 {
     font-family: var(--poppins-semibold);
     color: white;
     font-size: 65px;
-    padding-left: 35px;
-    padding-top: 130px;
+    padding-right: 35px;
+    padding-top: 100px;
   
   }
 
   .section .left p {
     font-family: var(--poppins-regular);
-    padding-left: 35px;
-    width: 650px;
+    padding-right: 35px;
     padding-top: 15px;
-    font-size: 24px;
+    font-size: 20px;
+    margin-left: 500px;
+    color: white;
   }
   
   .section .right-container  {
@@ -186,7 +168,7 @@
   }
   
   .section .right button {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: white;
     font-size: 13px;
     font-family: var(--poppins-semibold);

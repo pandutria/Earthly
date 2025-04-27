@@ -1,8 +1,8 @@
 import React from "react";
-import "./Login.css"; 
+import "./Login.css";
 import Person from "../../assets/images/person.png";
 import Password from "../../assets/images/password.png";
-import Logo from "../../assets/images/logo.png"
+import Logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import HttpHandler from "../../data/HttpHandler";
 import { useState } from "react";
@@ -15,13 +15,11 @@ function Login() {
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
-  const handleLogin = async() => {
-
+  const handleLogin = async () => {
     if (!username || !password) {
       alert("All fields must be filled")
       return
     }
-
 
     Swal.fire({
       title: 'Loading',
@@ -31,79 +29,79 @@ function Login() {
       }
     });
 
+    const rBody = { username, password };
 
-    const rBody = {
-      username,
-      password
-    }
+    const res = await HttpHandler.request("login", "POST", null, rBody);
 
-    const res = await HttpHandler.request(
-      "login", 
-      "POST", 
-      null, 
-      rBody
-    )
+    const code = JSON.parse(res).code;
+    const body = JSON.parse(res).body;
 
-    const code = JSON.parse(res).code
-    const body = JSON.parse(res).body
-
-    Swal.close()
+    Swal.close();
 
     if (code == 201) {
-      const json = JSON.parse(body)
-      DataStorage.saveToken(  json.token)
-      // alert(`Token : ${DataStorage.getToken()}`)
-      Swal.fire("Success", "Login Successful", "success")
-      navigate("/main")
+      const json = JSON.parse(body);
+      const role = json.user.role;
+
+      if (role == "admin") {
+        navigate("/managee/product");
+      } else {
+        navigate("/main/customer");
+      }
+
+      DataStorage.saveToken(json.token);
+      Swal.fire("Success", "Login Successful", "success");
+      
     }
 
     if (code == 401) {
-      Swal.fire("Error", "Invalid credentials", "error")
+      Swal.fire("Error", "Invalid credentials", "error");
     }
   }
 
   return (
-
-    <section className="section">
-      <div className="left">
-        <div className="logo-container">
-          <img src={Logo} alt="" />
+    <section className="login-section">
+      <div className="login-left">  
+        <div className="login-logo-container">
+          <img src={Logo} alt="logo" />
           <h1>Earthly</h1>
         </div>
-        <h2>Welcome <br/>Back</h2>
+        <h2>Welcome <br />Back!</h2>
       </div>
 
-      <div className="right-container">
-        <div className="right">
+      <div className="login-right-container">
+        <div className="login-right">
           <h1>Login</h1>
           <h3>Welcome back! Please login to your account</h3>
 
           <h2>Username</h2>
-          <div className="input-wrapper">
-            <img src={Person} alt="user" className="input-icon" />
-            <input type="text" 
-            placeholder="Write your username" 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)}/>
+          <div className="login-input-wrapper">
+            <img src={Person} alt="user" className="login-input-icon" />
+            <input 
+              type="text" 
+              placeholder="Write your username" 
+              value={username} 
+              onChange={(e) => setUsername(e.target.value)} 
+            />
           </div>
 
           <h2>Password</h2>
-          <div className="input-wrapper">
-            <img src={Password} alt="password" className="input-icon" />
-            <input type="password" 
-            placeholder="Write your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} />
+          <div className="login-input-wrapper">
+            <img src={Password} alt="password" className="login-input-icon" />
+            <input 
+              type="password" 
+              placeholder="Write your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)} 
+            />
           </div>
 
           <button onClick={handleLogin}>Login</button>
           <h4>
-            New User?  <Link to="/register"><span> Sign Up</span></Link> 
+            New User? <Link to="/register"><span>Sign Up</span></Link>
           </h4>
         </div>
       </div>
     </section>
-
   );
 }
 

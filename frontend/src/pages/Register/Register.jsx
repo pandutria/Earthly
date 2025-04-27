@@ -103,12 +103,8 @@ function Register() {
               </div>
 
               <div className="left">
-                <div className="logo-container">
-                  <img src={Logo} alt="" />
-                  <h1>Earthly</h1>
-                </div>
                 <h2>Hello, Friend</h2>
-                <p>Welcome! Join us today and start your exciting journey. Fill in your details and enjoy all the features we’ve prepared just for you.</p>
+                <p>Join us to start your exciting journey.</p>
               </div>
             </section>
     );
