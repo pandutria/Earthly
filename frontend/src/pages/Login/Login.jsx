@@ -3,19 +3,16 @@ import "./Login.css";
 import Person from "../../assets/images/person.png";
 import Password from "../../assets/images/password.png";
 import Logo from "../../assets/images/logo.png"
-import BackgroundImage from "../../assets/images/login.png";
 import { Link } from "react-router-dom";
 import HttpHandler from "../../data/HttpHandler";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-
 import DataStorage from "../../helper/DataStorage";
 
 function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = async() => {
@@ -54,7 +51,7 @@ function Login() {
 
     if (code == 201) {
       const json = JSON.parse(body)
-      DataStorage.saveToken(json.token)
+      DataStorage.saveToken(  json.token)
       // alert(`Token : ${DataStorage.getToken()}`)
       Swal.fire("Success", "Login Successful", "success")
       navigate("/main")

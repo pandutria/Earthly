@@ -54,8 +54,8 @@ html {
 }
 
 .section .left {
-  width: 50vw;
-  background-image: url('../../assets//images/login.png');
+  width: 100vw;
+  background-image: url('../../assets/images/login1.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
