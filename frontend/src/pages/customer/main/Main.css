@@ -3,8 +3,9 @@
     --poppins-bold: poppins-bold;
     --poppins-medium: poppins-medium;
     --poppins-regular: poppins-regular;
-    --primary-color: #006637;
-    --secondary-color: #67ae6e;
+    --primary-color: #7B936F;
+    --secondary-color: #5D706C;
+    --krem-color: #F3EBE0;
     --hint-color: #898989;
     --gray-color: #494949;
     --bounce-animation: bounce 10s ease-in-out infinite;
@@ -38,7 +39,7 @@
   }
   
   body {
-    background-color: white;
+    color: black;
     overflow-x: hidden;
     font-family: var(--poppins-regular);
   }
@@ -46,6 +47,102 @@
   html {
     scroll-behavior: smooth;
   }
+
+  .home-section {
+    width: 100%;
+    height: 160vh; 
+    background-image: url("../../../assets/images/homes.png");
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .home-section .home-top {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    padding-top: 100px;
+    align-items: center;
+  }
+
+  .home-section .home-top img {
+    width: auto;
+    height: 600px;
+  }
+  
+  .home-section .home-top .home-right {
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    gap: 20px;
+  }
+
+  .home-section .home-top .home-right h1 {
+    font-family: var(--poppins-semibold);
+    font-size: 70px;
+    color: white;
+  }
+
+  .home-section .home-top .home-right p {
+    color: white;
+    text-align: end;
+    font-family: var(--poppins-semibold);
+    font-size: 20px;
+  }
+
+  .home-section .home-top .home-right a {
+    color: white;
+    font-family: var(--poppins-semibold);
+    text-decoration: none;
+    background-color: var(--secondary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .home-section .home-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 970px;
+    height: 170px;
+    background-color: var(--krem-color);
+    border-radius: 25px;
+    margin-top: 230px;
+    box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.25); 
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .home-section .home-bottom .home-bottom-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+
+  .home-section .home-bottom img {
+    height: 90px;
+  }
+
+  .home-section .home-bottom .home-bottom-container img {
+    width: 80px;
+    height: auto;
+  }
+
+  .home-section .home-bottom .home-bottom-container p {
+    font-family: var(--poppins-semibold);
+    font-size: 20px;
+    width: 150px;
+  }
+
   
  
   

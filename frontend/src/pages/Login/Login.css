@@ -3,7 +3,7 @@
   --poppins-bold: poppins-bold;
   --poppins-medium: poppins-medium;
   --poppins-regular: poppins-regular;
-  --primary-color: #006637;
+  --main-color: #7B936F;
   --secondary-color: #67ae6e;
   --hint-color: #898989;
   --gray-color: #494949;
@@ -159,11 +159,11 @@ html {
 
 .login-input-wrapper input:focus {
   outline: none;
-  border: 2.5px solid var(--primary-color);
+  border: 2.5px solid var(--main-color);
 }
 
 .login-right button {
-  background-color: var(--primary-color);
+  background-color: var(--main-color);
   color: white;
   font-size: 13px;
   font-family: var(--poppins-semibold);
