@@ -13,8 +13,17 @@ import wonder2 from "../../../assets/images/wonder2.png";
 import wonder3 from "../../../assets/images/wonder3.png";
 import wonder4 from "../../../assets/images/wonder4.png";
 import wonder5 from "../../../assets/images/wonder5.png";
+import { useNavigate } from "react-router-dom";
+import DataStorage from "../../../helper/DataStorage";
+import { Navigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate()
+
+  // if (DataStorage.getToken() === "") {
+  //   return <Navigate to="/login" replace />;
+  // }
+
   return (
     <div className="">
       <Navbar />

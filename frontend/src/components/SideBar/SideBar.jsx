@@ -6,17 +6,27 @@ import Dashboard from "../../assets/images/dashboard.png";
 import Category from "../../assets/images/category.png";
 import Product from "../../assets/images/product.png";
 import Logout from "../../assets/images/logout.png";
+import DataStorage from "../../helper/DataStorage";
 
-const SidebarItem = ({ icon, text, active }) => {
+const SidebarItem = ({ icon, text, active, onClick }) => {
   return (
-    <div className={`sidebar-item-container ${active ? "active" : ""}`}>
+    <div className={`sidebar-item-container ${active ? "active" : ""}`} onClick={onClick}>
       <img src={icon} alt={text} />
       <p>{text}</p>
     </div>
   );
 };
 
+
 const SideBar = () => {
+  
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    DataStorage.deleteToken()
+    navigate("/login")
+  }
+
   return (
     <div className="sidebar-container">
       <div className="logo-container">
@@ -25,15 +35,14 @@ const SideBar = () => {
       </div>
 
       <div className="sidebar-menu">
-        <SidebarItem icon={Dashboard} text="Dashboard" active={false} />
-        <SidebarItem icon={Category} text="Category" active={false} />
+        <SidebarItem onClick={() => navigate("/main/admin")}  icon={Dashboard} text="Dashboard" active={false} />
+        <SidebarItem onClick={() => navigate("/main/customer")}  icon={Category} text="Category" active={false} />
         <SidebarItem icon={Product} text="Product" active={false} />
       </div>
 
-        <a href="">
+        <a href="" onClick={handleLogout}>
             <img src={Logout} alt="" />
             <p>Logout</p>
-
         </a>
     
     </div>

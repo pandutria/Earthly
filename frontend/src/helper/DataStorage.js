@@ -1,4 +1,4 @@
-var token = ""
+let token = ""
 
 function saveToken(value) {
     token = value
@@ -8,4 +8,8 @@ function getToken(value) {
     return token
 }
 
-export default {saveToken, getToken}
+function deleteToken() {
+    token = ""
+}
+
+export default {token, saveToken, getToken, deleteToken}
