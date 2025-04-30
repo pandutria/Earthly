@@ -3,7 +3,7 @@
   --poppins-bold: poppins-bold;
   --poppins-medium: poppins-medium;
   --poppins-regular: poppins-regular;
-  --main-color: #7B936F; /* Ganti dari --primary-color ke --main-color */
+  --main-color: #7B936F;
   --secondary-color: #67ae6e;
   --hint-color: #898989;
   --gray-color: #494949;
@@ -47,35 +47,25 @@ html {
   scroll-behavior: smooth;
 }
 
-.loading-popup {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  z-index: 999;
-}
-
-.section {
+/* === Register Page Layout === */
+.register-page {
   height: 100vh;
   display: flex;
+  margin: auto;
   flex-direction: row;
 }
 
-.section .left {
+/* === Left Banner === */
+.register-page__banner {
   width: 50vw;
-  background-image: url('../../assets//images/register.png');
+  background-image: url('../../assets/images/register.png');
   background-size: cover;
   background-position: center;
   text-align: end;
   background-repeat: no-repeat;
 }
 
-.section .left h2 {
+.register-page__banner h2 {
   font-family: var(--poppins-semibold);
   color: white;
   font-size: 65px;
@@ -83,7 +73,7 @@ html {
   padding-top: 100px;
 }
 
-.section .left p {
+.register-page__banner p {
   font-family: var(--poppins-regular);
   padding-right: 35px;
   padding-top: 15px;
@@ -92,26 +82,27 @@ html {
   color: white;
 }
 
-.section .right-container {
+/* === Right Form === */
+.register-page__form-container {
   justify-content: center;
   align-items: center;
   display: flex;
   width: 50vw;
 }
 
-.section .right {
+.register-page__form {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.section .right h1 {
+.register-page__form h1 {
   color: black;
   font-size: 40px;
   font-family: var(--poppins-semibold);
 }
 
-.section .right h3 {
+.register-page__form h3 {
   color: var(--hint-color);
   font-size: 16px;
   font-family: var(--poppins-regular);
@@ -121,7 +112,7 @@ html {
   margin-bottom: 20px;
 }
 
-.section .right h2 {
+.register-page__form h2 {
   color: var(--hint-color);
   font-size: 18px;
   font-family: var(--poppins-medium);
@@ -129,13 +120,14 @@ html {
   margin-top: 10px;
 }
 
-.input-wrapper {
+/* === Input Wrapper === */
+.register-form__input-wrapper {
   position: relative;
   width: 370px;
   margin-bottom: 10px;
 }
 
-.input-wrapper input {
+.register-form__input-wrapper input {
   color: #797979;
   font-size: 13px;
   font-family: var(--poppins-regular);
@@ -149,7 +141,12 @@ html {
   box-sizing: border-box;
 }
 
-.input-wrapper .input-icon {
+.register-form__input-wrapper input:focus {
+  outline: none;
+  border: 2.5px solid var(--main-color);
+}
+
+.register-form__icon {
   position: absolute;
   top: 53%;
   left: 17px;
@@ -159,13 +156,9 @@ html {
   pointer-events: none;
 }
 
-.input-wrapper input:focus {
-  outline: none;
-  border: 2.5px solid var(--main-color); /* Ganti primary-color ke main-color */
-}
-
-.section .right button {
-  background-color: var(--main-color); /* Ganti primary-color ke main-color */
+/* === Register Button === */
+.register-page__form button {
+  background-color: var(--main-color);
   color: white;
   font-size: 13px;
   font-family: var(--poppins-semibold);
@@ -177,7 +170,8 @@ html {
   cursor: pointer;
 }
 
-.section .right h4 {
+/* === Login Redirect Text === */
+.register-page__form h4 {
   color: #797979;
   opacity: 60%;
   font-size: 12px;
@@ -185,7 +179,7 @@ html {
   font-family: var(--poppins-medium);
 }
 
-.section .right span {
+.register-page__form span {
   font-style: italic;
   color: var(--secondary-color);
   cursor: pointer;
