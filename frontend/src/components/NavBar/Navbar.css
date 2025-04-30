@@ -69,18 +69,20 @@ html {
   flex-direction: row;
   padding-left: 25px;
   align-items: center;
-  margin-top: -5px;
+  margin: auto;
 }
 
 .navbar .logo-container img {
   width: 40px;
   height: auto;
+  object-fit: contain;
+  margin-top: -10px;
 }
 
 .navbar .logo-container h1 {
   color: white;
   font-size: 15px;
-  padding-top: 15px;
+  padding-top: 5px;
   padding-left: 2px;
   font-family: var(--poppins-semibold);
 }
@@ -91,7 +93,7 @@ html {
   align-items: center;
   justify-content: center;
   flex: 1;
-  margin-left: -110px;
+  margin-left: -130px;
 }
 
 .navbar .nav-text ul {
@@ -111,3 +113,5 @@ html {
   font-family: var(--poppins-semibold);
 
 }
+
+
