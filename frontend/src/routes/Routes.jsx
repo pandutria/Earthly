@@ -4,6 +4,7 @@ import Login from '../pages/Login/Login'
 import Register from '../pages/Register/Register';
 import MainCustomer from '../pages/customer/main/Main';
 import MainAdmin from '../pages/admin/main/Main';
+import ManageCategory from '../pages/admin/manage/ManageCategory';
 
 function Router() {
     return (
@@ -14,6 +15,7 @@ function Router() {
                  <Route path='/login' element={<Login/>}/>
                  <Route path='/main/customer' element={<MainCustomer/>}/>
                  <Route path='/main/admin' element={<MainAdmin/>}/>
+                 <Route path='/manage/category' element={<ManageCategory/>}/>
             </Routes>
         </BrowserRouter>
     );

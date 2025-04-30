@@ -78,7 +78,7 @@
     align-items: center;
   }
 
-  .section .filter-container .plus a {
+  .section .filter-container .plus .link {
     display: flex;
     flex-direction: row;
     text-decoration: none;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "../../../components/SideBar/SideBar";
 import DataStorage from "../../../helper/DataStorage";
-import { useNavigate } from "react-router-dom";
 import "./Main.css";
 import Search from "../../../assets/images/serch.png";
 import Plus from "../../../assets/images/plus.png";
@@ -9,10 +8,11 @@ import Edit from "../../../assets/images/edit.png";
 import Delete from "../../../assets/images/delete.png";
 import Add from "../../../assets/images/addnew.png";
 import HttpHandler from "../../../data/HttpHandler";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Main = () => {
-  const navigate = useNavigate();
-  const [search, setSearch] = useState(""); 
+  const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -39,6 +39,33 @@ const Main = () => {
     }
   };
 
+  const handleDeleteData = async (id) => {
+    try {
+      Swal.fire({
+        title: "Loading",
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+  
+      const res = await HttpHandler.request(`categories/${id}`, "DELETE", null, null)
+      const code = JSON.parse(res).code
+  
+      Swal.close()
+  
+      if (code === 200) {
+        Swal.fire("Deleted!", "Category has been deleted.", "success");
+        fetchCategories()
+      } else {
+        Swal.fire("Error", "Failed to delete category", "error"); 
+      }
+    } catch(err) {
+      console.log(err)
+    }
+    
+  };
+
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "short", year: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
@@ -62,10 +89,10 @@ const Main = () => {
           </div>
 
           <div className="plus">
-            <a href="">
+            <Link to="/manage/category" className="link">
               <i class="bx bx-plus"></i>
               <p>Add New Category</p>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -98,7 +125,7 @@ const Main = () => {
                             <img src={Edit} alt="" />
                             <p>Edit</p>
                           </button>
-                          <button className="delete-btn">
+                          <button className="delete-btn" onClick={() => handleDeleteData(item.id)}>
                             <img src={Delete} alt="" />
                           </button>
                         </div>
