@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import HttpHandler from "../../../data/HttpHandler";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import DataStorage from "../../../helper/DataStorage";
 
 const ManageCategory = () => {
   const [category, setCategory] = useState("")
@@ -13,6 +14,35 @@ const ManageCategory = () => {
 
   const navToMain = () => {
     navigate("/main/admin/category")
+  }
+
+  const handleData = () => {
+    if (DataStorage.mode === "add") handleSendData()
+    else handleUpdateData(DataStorage.categories_id)
+  }
+
+  useEffect(() => {
+    if (DataStorage.mode === "update") {
+      fetchCategories()
+    }
+  }, [])
+
+  const fetchCategories = async () => {
+    try {
+      const res = await HttpHandler.request(`categories/${DataStorage.categories_id}`, "GET")
+      const code = JSON.parse(res).code
+      const body = JSON.parse(res).body
+
+      if (code === 200) {
+        const json = JSON.parse(body)
+        console.log(code)
+        console.log(json.name)
+        setCategory(json.name)
+      }
+    } catch(err) {
+      Swal.fire("Error", `${err}`, "error");
+      console.log(err)
+    }
   }
 
   const handleSendData = async () => {
@@ -45,7 +75,6 @@ const ManageCategory = () => {
         navigate("/main/admin/category");
       } else {
         Swal.fire("Error", `${json.error}`, "error");
-        category = ""
       }
 
 
@@ -53,6 +82,40 @@ const ManageCategory = () => {
       Swal.fire("Error", `${err}`, "error");
       console.log(err)
     }
+  }
+
+  const handleUpdateData = async (id) => {
+    if (!category) {
+      alert("Field must be filled")
+      return
+    }
+
+    Swal.fire({
+      title: "Loading",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
+    try {
+
+      const rBody = {
+        name: category
+      }
+
+      const res = await HttpHandler.request(`categories/${id}`, "PUT", null, rBody)
+      const code = JSON.parse(res).code
+
+      if (code === 200) {
+        Swal.fire("Success", "Update data Successful", "success");
+        navigate("/main/admin/category");
+      }
+    } catch (err) {
+      Swal.fire("Error", `${err}`, "error");
+      console.log(err)
+    }
+
   }
 
 
@@ -67,15 +130,16 @@ const ManageCategory = () => {
           </div>
           <div className="add-btn">
             <button className="btn-discard" onClick={navToMain}>Discard Changes</button>
-            <button className="btn-add" onClick={handleSendData}>Add Category</button>
+            <button className="btn-add" onClick={handleData}>Add Category</button>
           </div>
         </div>
 
         <div className="data-container">
           <h1>General Information</h1>
-          <p>Product Name</p>
+          <p>Category Name</p>
           <input type="text" 
           placeholder="Enter your category"
+          value={category}
           onChange={(x) => setCategory(x.target.value)} />
         </div>
       </div>

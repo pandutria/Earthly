@@ -15,10 +15,22 @@ import { useNavigate } from "react-router-dom";
 const Category = () => {
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  const handle = (id = null) => () => {
+    if (id == null) DataStorage.mode = "add"
+    else {
+      DataStorage.mode = "update"
+      DataStorage.categories_id = id
+    }
+   
+    navigate("/admin/manage/category")
+
+  }
 
   const fetchCategories = async () => {
     try {
@@ -90,10 +102,10 @@ const Category = () => {
           </div>
 
           <div className="plus">
-            <Link to="/manage/category" className="link">
+            <a className="link" onClick={handle(null)}>
               <i class="bx bx-plus"></i>
               <p>Add New Category</p>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -122,7 +134,7 @@ const Category = () => {
                       <td>0 Products</td>
                       <td>
                         <div className="btn-container">
-                          <button className="edit-btn">
+                          <button className="edit-btn" onClick={handle(item.id)}>
                             <img src={Edit} alt="" />
                             <p>Edit</p>
                           </button>

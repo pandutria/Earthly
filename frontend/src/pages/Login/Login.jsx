@@ -29,7 +29,10 @@ function Login() {
       }
     });
 
-    const rBody = { username, password };
+    const rBody = { 
+      username, 
+      password 
+    };
 
     const res = await HttpHandler.request("login", "POST", null, rBody);
 

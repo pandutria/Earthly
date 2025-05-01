@@ -12,4 +12,7 @@ function deleteToken() {
     token = ""
 }
 
-export default {token, saveToken, getToken, deleteToken}
+let mode = ""
+let categories_id = 0
+
+export default {categories_id, mode, token, saveToken, getToken, deleteToken}

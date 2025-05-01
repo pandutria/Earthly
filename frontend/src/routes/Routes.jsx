@@ -17,7 +17,7 @@ function Router() {
                  <Route path='/main/customer' element={<MainCustomer/>}/>
                  <Route path='/main/admin' element={<MainAdmin/>}/>
                  <Route path='/main/admin/category' element={<Category/>}/>
-                 <Route path='/manage/category' element={<ManageCategory/>}/>
+                 <Route path='/admin/manage/category' element={<ManageCategory/>}/>
             </Routes>
         </BrowserRouter>
     );
