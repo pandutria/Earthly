@@ -6,6 +6,7 @@ import MainCustomer from '../pages/customer/main/Main';
 import MainAdmin from '../pages/admin/main/Main';
 import ManageCategory from '../pages/admin/manage/ManageCategory';
 import Category from '../pages/admin/Main/Category/Category';
+import Product from '../pages/admin/Main/Product/Product';
 
 function Router() {
     return (
@@ -17,6 +18,7 @@ function Router() {
                  <Route path='/main/customer' element={<MainCustomer/>}/>
                  <Route path='/main/admin' element={<MainAdmin/>}/>
                  <Route path='/main/admin/category' element={<Category/>}/>
+                 <Route path='/main/admin/product' element={<Product/>}/>
                  <Route path='/admin/manage/category' element={<ManageCategory/>}/>
             </Routes>
         </BrowserRouter>

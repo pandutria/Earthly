@@ -4,7 +4,7 @@ function saveToken(value) {
     token = value
 }
 
-function getToken(value) {
+function getToken() {
     return token
 }
 
