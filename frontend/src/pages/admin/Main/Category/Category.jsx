@@ -131,7 +131,7 @@ const Category = () => {
                       <td>{"CTG " + item.id}</td>
                       <td>{item.name}</td>
                       <td>{formatDate(item.created_at)}</td>
-                      <td>0 Products</td>
+                      <td>{item.product_count} Products</td>
                       <td>
                         <div className="btn-container">
                           <button className="edit-btn" onClick={handle(item.id)}>

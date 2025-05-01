@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Category::query();
+        $query = Category::withCount('product');
 
         if ($request->has('search')) {
             $search = $request->input('search');
