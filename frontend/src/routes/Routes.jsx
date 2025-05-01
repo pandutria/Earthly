@@ -5,6 +5,7 @@ import Register from '../pages/Register/Register';
 import MainCustomer from '../pages/customer/main/Main';
 import MainAdmin from '../pages/admin/main/Main';
 import ManageCategory from '../pages/admin/manage/ManageCategory';
+import Category from '../pages/admin/Main/Category/Category';
 
 function Router() {
     return (
@@ -15,6 +16,7 @@ function Router() {
                  <Route path='/login' element={<Login/>}/>
                  <Route path='/main/customer' element={<MainCustomer/>}/>
                  <Route path='/main/admin' element={<MainAdmin/>}/>
+                 <Route path='/main/admin/category' element={<Category/>}/>
                  <Route path='/manage/category' element={<ManageCategory/>}/>
             </Routes>
         </BrowserRouter>

@@ -7,6 +7,7 @@ import Category from "../../assets/images/category.png";
 import Product from "../../assets/images/product.png";
 import Logout from "../../assets/images/logout.png";
 import DataStorage from "../../helper/DataStorage";
+import { useLocation } from "react-router-dom";
 
 const SidebarItem = ({ icon, text, active, onClick }) => {
   return (
@@ -21,6 +22,7 @@ const SidebarItem = ({ icon, text, active, onClick }) => {
 const SideBar = () => {
   
   const navigate = useNavigate()
+  const location = useLocation();
 
   const handleLogout = () => {
     DataStorage.deleteToken()
@@ -35,8 +37,8 @@ const SideBar = () => {
       </div>
 
       <div className="sidebar-menu">
-        <SidebarItem onClick={() => navigate("/main/admin")}  icon={Dashboard} text="Dashboard" active={false} />
-        <SidebarItem onClick={() => navigate("/main/customer")}  icon={Category} text="Category" active={false} />
+        <SidebarItem onClick={() => navigate("/main/admin")}  icon={Dashboard} text="Dashboard" active={location.pathname === "/main/admin"} />
+        <SidebarItem onClick={() => navigate("/main/admin/category")}  icon={Category} text="Category" active={location.pathname === "/main/admin/category"} />
         <SidebarItem icon={Product} text="Product" active={false} />
       </div>
 

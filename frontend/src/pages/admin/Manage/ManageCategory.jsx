@@ -11,6 +11,10 @@ const ManageCategory = () => {
   const [category, setCategory] = useState("")
   const navigate = useNavigate()
 
+  const navToMain = () => {
+    navigate("/main/admin/category")
+  }
+
   const handleSendData = async () => {
   if (!category) {
     alert("Field must be filled")
@@ -38,7 +42,7 @@ const ManageCategory = () => {
 
       if (code === 201) {
         Swal.fire("Success", "Add data Successful", "success");
-        navigate("/main/admin");
+        navigate("/main/admin/category");
       } else {
         Swal.fire("Error", `${json.error}`, "error");
         category = ""
@@ -62,7 +66,7 @@ const ManageCategory = () => {
             <p>Add the category to support the product</p>
           </div>
           <div className="add-btn">
-            <button className="btn-discard">Discard Changes</button>
+            <button className="btn-discard" onClick={navToMain}>Discard Changes</button>
             <button className="btn-add" onClick={handleSendData}>Add Category</button>
           </div>
         </div>
