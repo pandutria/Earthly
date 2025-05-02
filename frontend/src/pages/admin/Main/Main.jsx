@@ -5,6 +5,7 @@ import "./Main.css";
 const Main = () => {
   return (
     <SideBar/>
+    
   )
 };
 

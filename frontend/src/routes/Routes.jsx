@@ -7,6 +7,7 @@ import MainAdmin from '../pages/admin/main/Main';
 import ManageCategory from '../pages/admin/manage/ManageCategory';
 import Category from '../pages/admin/Main/Category/Category';
 import Product from '../pages/admin/Main/Product/Product';
+import ManageProduct from '../pages/admin/Main/ManageProduct/ManageProduct';
 
 function Router() {
     return (
@@ -20,6 +21,7 @@ function Router() {
                  <Route path='/main/admin/category' element={<Category/>}/>
                  <Route path='/main/admin/product' element={<Product/>}/>
                  <Route path='/admin/manage/category' element={<ManageCategory/>}/>
+                 <Route path='/admin/manage/product' element={<ManageProduct/>}/>
             </Routes>
         </BrowserRouter>
     );

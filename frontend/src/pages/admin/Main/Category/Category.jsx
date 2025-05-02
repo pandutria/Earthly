@@ -15,31 +15,33 @@ import { useNavigate } from "react-router-dom";
 const Category = () => {
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  const handle = (id = null) => () => {
-    if (id == null) DataStorage.mode = "add"
-    else {
-      DataStorage.mode = "update"
-      DataStorage.categories_id = id
-    }
-   
-    navigate("/admin/manage/category")
+  const handle =
+    (id = null) =>
+    () => {
+      if (id == null) DataStorage.mode = "add";
+      else {
+        DataStorage.mode = "update";
+        DataStorage.categories_id = id;
+      }
 
-  }
+      navigate("/admin/manage/category");
+    };
 
   const fetchCategories = async () => {
     try {
       var res = await HttpHandler.request("categories");
 
-      if (search != "") {
-        res = await HttpHandler.request(`categories?search=${search}`);
-      }
-
+      // if (search != "") {
+      //   setCategories([])
+      //   res = await HttpHandler.request(`categories?search=${search}`);
+      // }
+      
       const code = JSON.parse(res).code;
       const body = JSON.parse(res).body;
 
@@ -61,22 +63,26 @@ const Category = () => {
           Swal.showLoading();
         },
       });
-  
-      const res = await HttpHandler.request(`categories/${id}`, "DELETE", null, null)
-      const code = JSON.parse(res).code
-  
-      Swal.close()
-  
+
+      const res = await HttpHandler.request(
+        `categories/${id}`,
+        "DELETE",
+        null,
+        null
+      );
+      const code = JSON.parse(res).code;
+
+      Swal.close();
+
       if (code === 200) {
         Swal.fire("Deleted!", "Category has been deleted.", "success");
-        fetchCategories()
+        fetchCategories();
       } else {
-        Swal.fire("Error", "Failed to delete category", "error"); 
+        Swal.fire("Error", "Failed to delete category", "error");
       }
-    } catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-    
   };
 
   const formatDate = (dateString) => {
@@ -86,7 +92,7 @@ const Category = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      <SideBar/>
+      <SideBar />
       <div className="section">
         <h1>Manage Category</h1>
         <p>{categories.length} category available</p>
@@ -121,30 +127,32 @@ const Category = () => {
               </tr>
             </thead>
             <tbody>
-              {Array.isArray(categories) &&
-                categories
-                  .filter((item) =>
-                    item.name.toLowerCase().includes(search.toLowerCase())
-                  )
-                  .map((item, index) => (
-                    <tr key={index}>
-                      <td>{"CTG " + item.id}</td>
-                      <td>{item.name}</td>
-                      <td>{formatDate(item.created_at)}</td>
-                      <td>{item.product_count} Products</td>
-                      <td>
-                        <div className="btn-container">
-                          <button className="edit-btn" onClick={handle(item.id)}>
-                            <img src={Edit} alt="" />
-                            <p>Edit</p>
-                          </button>
-                          <button className="delete-btn" onClick={() => handleDeleteData(item.id)}>
-                            <img src={Delete} alt="" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+              {categories
+                .filter((item) =>
+                  item.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((item, index) => (
+                  <tr key={index}>
+                    <td>{"CTG " + item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{formatDate(item.created_at)}</td>
+                    <td>{item.product_count} Products</td>
+                    <td>
+                      <div className="btn-container">
+                        <button className="edit-btn" onClick={handle(item.id)}>
+                          <img src={Edit} alt="" />
+                          <p>Edit</p>
+                        </button>
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDeleteData(item.id)}
+                        >
+                          <img src={Delete} alt="" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

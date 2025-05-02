@@ -24,7 +24,7 @@ const ManageCategory = () => {
   useEffect(() => {
     if (DataStorage.mode === "update") {
       fetchCategories()
-    }
+    } 
   }, [])
 
   const fetchCategories = async () => {

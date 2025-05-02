@@ -13,6 +13,7 @@ function deleteToken() {
 }
 
 let mode = ""
-let categories_id = 0
+let categories_id = 0;
+let products_id = 0;
 
-export default {categories_id, mode, token, saveToken, getToken, deleteToken}
+export default {products_id, categories_id, mode, token, saveToken, getToken, deleteToken}

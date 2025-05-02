@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
     public function show($id)
     {
-        return Category::findOrFail($id);
+        return Category::withCount('product')->find($id);
     }
 
     public function store(Request $request)
