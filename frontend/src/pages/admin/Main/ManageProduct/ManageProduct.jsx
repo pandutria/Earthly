@@ -82,7 +82,6 @@ const ManageProduct = () => {
       },
     });
 
-
     try {
       const json = {
         name: name,
@@ -268,7 +267,7 @@ const ManageProduct = () => {
                   type="text"
                   placeholder="Image URL"
                   value={image_url}
-                  readOnly
+                  // readOnly
                   style={{ width: "500px" }}
                 />
                 <img src={Add} alt="" onClick={openFileExplorer} />

@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../../../components/NavBar/Navbar";
 import "./Main.css";
-// import home from "../../../assets/images/home.png"
 import homeImage from "../../../assets/images/hone.png";
 import home1 from "../../../assets/images/home1.png";
 import home2 from "../../../assets/images/home2.png";
@@ -13,16 +12,40 @@ import wonder2 from "../../../assets/images/wonder2.png";
 import wonder3 from "../../../assets/images/wonder3.png";
 import wonder4 from "../../../assets/images/wonder4.png";
 import wonder5 from "../../../assets/images/wonder5.png";
+import star from "../../../assets/images/star.png";
+import test from "../../../assets/images/test.png";
 import { useNavigate } from "react-router-dom";
 import DataStorage from "../../../helper/DataStorage";
 import { Navigate } from "react-router-dom";
+import { useState } from "react";
+import HttpHandler from "../../../data/HttpHandler"
+import { useEffect } from "react";
 
 const Main = () => {
   const navigate = useNavigate()
+  const [products, useProducts] = useState([])
 
   // if (DataStorage.getToken() === "") {
-  //   return <Navigate to="/login" replace />;
+  //   return <Navigate to="/logi n" replace />;
   // }
+  const fecthProducts = async () => {
+    try {
+      const url = await HttpHandler.request("products", "GET")
+      const code = JSON.parse(url).code
+      const body = JSON.parse(url).body
+
+      if (code === 200) {
+        const data = JSON.parse(body)
+        useProducts(data)
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    fecthProducts();
+  }, []);
 
   return (
     <div className="">
@@ -94,6 +117,28 @@ const Main = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="product-section">
+        <h1>Featured Product</h1>
+        <div className="product-container">
+          {products.map((product, index) => 
+             <div className="product-item" key={index}>
+             <img src={product.image_url} alt="" />
+             <div className="product-item-text">
+               <p>{product.category.name}</p>
+               <h1>{product.name}</h1>
+               <div className="product-item-text-rating">
+                 <img src={star} alt="" />
+                 <h2>(10 Review)</h2>
+               </div>
+               <h3>Rp. {product.price.toLocaleString("id-ID")}</h3>
+             </div>
+ 
+           </div>
+          )}
+        </div>
+
       </div>
 
     </div>
