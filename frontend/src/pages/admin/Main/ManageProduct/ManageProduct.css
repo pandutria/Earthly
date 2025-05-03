@@ -118,7 +118,7 @@
     flex-direction: column;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.55);
     border-radius: 10px;
-    width: 420px;
+    width: 590px;
     margin-top: 25px;
     justify-content: center;
     padding: 0px 20px 10px 20px;
@@ -149,9 +149,33 @@
     font-weight: 300;
   }
 
+  .section .data-container select {
+    border-radius: 5px;
+    border: 1px solid #C0C0C0;
+    padding: 12px 15px;
+    margin-top: 5px;
+    color: #9B9B9B;
+    font-size: 13px;
+    font-family: var(--poppins-medium);
+    background-color: #F3FFFA ;
+    font-weight: 300;
+  }
+
   .section .data-container input:focus {
     outline: none;
     border: 2px solid #C0C0C0;
+  }
+
+  .section .add-image {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .section .add-image img {
+    width: 45px;
+    height: auto;
+    object-fit: contain;
+    margin-left: 10px;
   }
 
 
