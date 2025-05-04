@@ -1,0 +1,69 @@
+:root {
+    --poppins-semibold: poppins-semibold;
+    --poppins-bold: poppins-bold;
+    --poppins-medium: poppins-medium;
+    --poppins-regular: poppins-regular;
+    --primary-color: #7b936f;
+    --secondary-color: #5d706c;
+    --krem-color: #f3ebe0;
+    --hint-color: #898989;
+    --gray-color: #494949;
+    --font-color: #393a37;
+    --bounce-animation: bounce 10s ease-in-out infinite;
+    --transition-hover: all ease-in-out 0.2s;
+  }
+  
+  @font-face {
+    font-family: poppins-semibold;
+    src: url("../../assets/font/poppins_semibold.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-bold;
+    src: url("../../assets/font/poppins_bold.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-medium;
+    src: url("../../assets/font/poppins_medium.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-regular;
+    src: url("../../assets/font/poppins_regular.ttf");
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    color: black;
+    overflow-x: hidden;
+    font-family: var(--poppins-regular);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .section-catalog {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+
+  }
+
+  .section-catalog h1 {
+    padding-left: 15px;
+    font-family: var(--poppins-semibold);
+    font-weight: 400;
+    font-size: 30px;
+  }
+
+  .filter-container {
+    display: flex;
+    flex-direction: row;
+  }

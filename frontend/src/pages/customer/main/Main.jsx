@@ -28,6 +28,11 @@ const Main = () => {
   // if (DataStorage.getToken() === "") {
   //   return <Navigate to="/logi n" replace />;
   // }
+
+  const navigateToCatalog = () => {
+    navigate("/main/customer/catalog")
+  }
+
   const fecthProducts = async () => {
     try {
       const url = await HttpHandler.request("products", "GET")
@@ -123,7 +128,7 @@ const Main = () => {
         <h1>Featured Product</h1>
         <div className="product-container">
           {products.map((product, index) => 
-             <div className="product-item" key={index}>
+             <div className="product-item" key={index} onClick={navigateToCatalog}>
              <img src={product.image_url} alt="" />
              <div className="product-item-text">
                <p>{product.category.name}</p>
