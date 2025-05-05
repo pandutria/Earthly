@@ -50,13 +50,13 @@
 .detail-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding-top: 30px;
 }
 
 .detail-section .detail-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 30px;
 }
 
@@ -161,4 +161,5 @@
   width: 120px;
   height: auto;
   object-fit: contain;
+  border-radius: 5px;
 }
