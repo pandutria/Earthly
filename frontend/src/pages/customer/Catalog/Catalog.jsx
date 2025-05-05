@@ -5,6 +5,7 @@ import Search from "../../../assets/images/serch.png";
 import { useEffect, useState } from "react";
 import HttpHandler from "../../../data/HttpHandler";
 import star from "../../../assets/images/star.png";
+import { useNavigate } from "react-router-dom";
 
 const Catalog = () => {
   const [categories, setCategories] = useState([]);
@@ -50,6 +51,12 @@ const Catalog = () => {
     fecthProducts();
   }, []);
 
+  const navigate = useNavigate()
+
+  const navigateToDetail = (id) => {
+      navigate(`/main/customer/product/${id}`)
+  }
+
   return (
     <div className="section-catalog">
       <h1>Catalog Products</h1>
@@ -76,7 +83,7 @@ const Catalog = () => {
       <div className="product-container">
         {products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()) && (selectedCategoryId === "" || product.category.id === Number(selectedCategoryId)))
         .map((product, index) => (
-          <div className="product-item" key={index}>
+          <div className="product-item" key={index} onClick={() => navigateToDetail(product.id)}>
             <img src={product.image_url} alt="" />
             <div className="product-item-text">
               <p>{product.category.name}</p>
@@ -85,7 +92,7 @@ const Catalog = () => {
                 <img src={star} alt="" />
                 <h2>(10 Review)</h2>
               </div>
-              <h3>Rp. {product.price.toLocaleString("id-ID")}</h3>
+              <h3>Rp. {product.price.toLocaleString("id-ID")},00</h3>
             </div>
           </div>
         ))}
