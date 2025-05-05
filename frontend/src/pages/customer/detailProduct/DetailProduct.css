@@ -50,13 +50,13 @@
 .detail-section {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding-top: 30px;
 }
 
 .detail-section .detail-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
   gap: 30px;
 }
 
@@ -154,7 +154,10 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  justify-content: space-between;
+  padding-top: 20px;
+  justify-content: center;
+  align-self: flex-start; /* Mengatur container ke kiri */
+  padding-left: 175px;
 }
 
 .detail-section .detail-image-container img {
