@@ -1,6 +1,7 @@
 import React from "react";
 import "./DetailProduct.css";
 import image1 from "../../../assets/images/1.png";
+import e from "../../../assets/images/e.png";
 import star1 from "../../../assets/images/star1.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -60,6 +61,22 @@ const DetailProduct = () => {
         <img src={image} alt="" />
         <img src={image} alt="" />
         <img src={image} alt="" />
+      </div>
+      <hr />
+      <h4>Merchant Information</h4>
+      <div className="merchant-container">
+        <div className="horizontal">
+          <img src={e} alt="" />
+          <div className="vertical">
+            <h1>Earthly</h1>
+            <h2>Jakarta Timur</h2>
+            <div className="horizontal-text">
+              <p>Top Rated Merchant</p>
+              <p>Best Merchant</p>
+            </div>
+          </div>
+          <button>Buy Now</button>
+        </div>
       </div>
     </div>
   );
