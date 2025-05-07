@@ -20,4 +20,13 @@ class TransactionHeader extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get all of the comments for the TransactionHeader
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactionDetail() {
+        return $this->hashmany(TransactionDetail::class);
+    }
 }
