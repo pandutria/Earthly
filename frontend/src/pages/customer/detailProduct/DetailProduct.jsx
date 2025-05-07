@@ -15,6 +15,7 @@ const DetailProduct = () => {
   const [image, setImage] = useState("")
   const [desc, setDesc] = useState("")
   const [price, setPrice] = useState("")
+  const [header_id, setHeader] = useState(0)
 
   useEffect(() => {
     fecthProduct()
@@ -37,6 +38,12 @@ const DetailProduct = () => {
       console.log(err)
     }
   }
+
+  // const handleHeader = async () => {
+  //   try {
+  //     const url = await HttpHandler.request('')
+  //   }
+  // }
 
   return (
     <div className="detail-section">

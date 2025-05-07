@@ -1,0 +1,83 @@
+:root {
+  --poppins-semibold: poppins-semibold;
+  --poppins-bold: poppins-bold;
+  --poppins-medium: poppins-medium;
+  --poppins-regular: poppins-regular;
+  --primary-color: #7b936f;
+  --secondary-color: #5d706c;
+  --krem-color: #f3ebe0;
+  --hint-color: #898989;
+  --gray-color: #494949;
+  --font-color: #393a37;
+  --bounce-animation: bounce 10s ease-in-out infinite;
+  --transition-hover: all ease-in-out 0.2s;
+}
+
+@font-face {
+  font-family: poppins-semibold;
+  src: url("../../assets/font/poppins_semibold.ttf");
+}
+
+@font-face {
+  font-family: poppins-bold;
+  src: url("../../assets/font/poppins_bold.ttf");
+}
+
+@font-face {
+  font-family: poppins-medium;
+  src: url("../../assets/font/poppins_medium.ttf");
+}
+
+@font-face {
+  font-family: poppins-regular;
+  src: url("../../assets/font/poppins_regular.ttf");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: black;
+  overflow-x: hidden;
+  font-family: var(--poppins-regular);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.cart-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-section h1 {
+  font-size: 30px;
+  font-family: var(--poppins-semibold);
+  font-weight: 400;
+  align-self: self-start;
+}
+
+.cart-header {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.cart-header h1 {
+  color: #828282;
+  font-size: 18px;
+}
+
+.cart-section hr {
+  margin-top: 30px;
+  width: 645px;
+  height: 1px;
+  background-color: #c2c2c2;
+  border: none;
+}

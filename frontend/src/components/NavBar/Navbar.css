@@ -61,13 +61,14 @@ html {
   position: fixed;
   top: 0;
   z-index: 999;
+  padding: 0px 30px;
+  justify-content: space-between;
   align-items: center;
 }
 
 .navbar .logo-container {
   display: flex;
   flex-direction: row;
-  padding-left: 25px;
   align-items: center;
   margin: auto;
 }
@@ -93,7 +94,6 @@ html {
   align-items: center;
   justify-content: center;
   flex: 1;
-  margin-left: -130px;
 }
 
 .navbar .nav-text ul {
@@ -114,4 +114,14 @@ html {
 
 }
 
+.navbar .transaction-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
 
+.navbar .transaction-container img {
+  width: 30px;
+  height: auto;
+  object-fit: contain;
+}

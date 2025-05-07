@@ -166,7 +166,7 @@
 .detail-section .detail-image-container img {
   width: 120px;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 5px;
 }
 

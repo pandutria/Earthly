@@ -31,6 +31,10 @@ const Main = () => {
   //   return <Navigate to="/logi n" replace />;
   // }
 
+  const navigateToDetail = (id) => {
+    navigate(`/main/customer/product/${id}`)
+  }
+
   const navigateToCatalog = () => {
     navigate("/main/customer/catalog");
   };
@@ -146,7 +150,7 @@ const Main = () => {
         <h1>Featured Product</h1>
         <div className="product-container">
           {products.slice(0, 8).map((product, index) => (
-            <div className="product-item" key={index}>
+            <div className="product-item" key={index} onClick={() => navigateToDetail(product.id)}>
               <img src={product.image_url} alt="" />
               <div className="product-item-text">
                 <p>{product.category.name}</p>
