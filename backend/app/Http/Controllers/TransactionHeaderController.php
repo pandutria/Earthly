@@ -45,4 +45,12 @@ class TransactionHeaderController extends Controller
             ], 500);
         }
     }
+
+    public function update(Request $request, $id) {
+        $th = TransactionHeader::find($id);
+        $th->update($request->only('status'));
+
+        $th->load('user');
+        return response()->json($th);
+    }
 }

@@ -48,6 +48,8 @@ Route::post('/products', [ProductController::class, 'store']);
 Route::put('/products/{id}', [ProductController::class, 'update']);
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
+Route::put('/th/{id}', [TransactionHeaderController::class, 'update']);
+
 Route::get('/td', [TransactionDetailController::class, 'index']);
 Route::post('/td', [TransactionDetailController::class, 'store']);
 Route::get('/td/{id}', [TransactionDetailController::class, 'show']);

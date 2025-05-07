@@ -194,7 +194,7 @@ const ManageProduct = () => {
       const body = JSON.parse(res).body;
 
       if (code === 200) {
-        const data = JSON.parse(body); // array of categories
+        const data = JSON.parse(body); 
         setCategories(data);
       }
     } catch (err) {
