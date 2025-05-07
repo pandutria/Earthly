@@ -3,6 +3,8 @@ import "./DetailProduct.css";
 import image1 from "../../../assets/images/1.png";
 import e from "../../../assets/images/e.png";
 import star1 from "../../../assets/images/star1.png";
+import checklist from "../../../assets/images/checklist.png";
+import spec from "../../../assets/images/spec.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import HttpHandler from "../../../data/HttpHandler";
@@ -74,8 +76,47 @@ const DetailProduct = () => {
               <p>Top Rated Merchant</p>
               <p>Best Merchant</p>
             </div>
+          </div> 
+        </div>
+        <button>Chat Admin</button>
+      </div>
+      <hr />
+      <div className="spec-container">
+        <div className="spec-vertical">
+          <h1>Specification</h1>
+          <img src={spec} alt="" />
+        </div>
+        <div className="spec-vertical" style={{gap: '15px'}}>
+          <h1>In The Box</h1>
+          <div className="spec-horizontal">
+            <img src={checklist} alt="" />
+            <p>GreenCharge Solar Panel</p>
           </div>
-          <button>Buy Now</button>
+          <div className="spec-horizontal">
+            <img src={checklist} alt="" />
+            <p>Adjustable Stand Frame</p>
+          </div>
+          <div className="spec-horizontal">
+            <img src={checklist} alt="" />
+            <p>USB-C Charging Cable</p>
+          </div>
+          <div className="spec-horizontal">
+            <img src={checklist} alt="" />
+            <p>Instruction Manual</p>
+          </div>
+          <div className="spec-horizontal">
+            <img src={checklist} alt="" />
+            <p>Carrying Case</p>
+          </div>
+        </div>
+        <div className="spec-vertical">
+          <h1>System Required</h1>
+          <div style={{marginTop: '-10px'}}>
+            <p>-Direct sunlight exposure</p>
+            <p>-Direct sunlight exposure</p>
+            <p>-Compatible with 5V–20V devices</p>
+            <p>-Optional power storage bank</p>
+          </div>
         </div>
       </div>
     </div>

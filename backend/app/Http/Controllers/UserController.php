@@ -21,7 +21,7 @@ class UserController extends Controller
 
         $user = User::create([
             'role' => $request->role,
-            'username' => $request->username,   
+            'username' => $request->username,
             'password' => bcrypt($request->password),
             'fullname' => $request->fullname,
         ]);
@@ -94,5 +94,11 @@ class UserController extends Controller
         User::destroy($id);
 
         return response()->json(['message' => 'User deleted']);
+    }
+
+    public function me()
+    {
+        $user = Auth::user();
+        return response()->json($user);
     }
 }

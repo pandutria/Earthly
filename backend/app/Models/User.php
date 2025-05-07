@@ -20,4 +20,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function transactionHeaders() {
+        return $this->hashmany(TransactionHeader::class);
+    }
 }
