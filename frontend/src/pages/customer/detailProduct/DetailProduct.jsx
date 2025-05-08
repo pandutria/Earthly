@@ -12,32 +12,34 @@ import CartManager from "../../../data/CartManager";
 
 const DetailProduct = () => {
   const params = useParams();
-  const [name, setName] = useState("")
-  const [image, setImage] = useState("")
-  const [desc, setDesc] = useState("")
-  const [price, setPrice] = useState("")
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [desc, setDesc] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("")
 
   useEffect(() => {
-    fecthProduct()
-  }, [])
+    fecthProduct();
+  }, []);
 
   const fecthProduct = async () => {
     try {
-      const url = await HttpHandler.request(`products/${params.id}`, "GET")
-      const code = JSON.parse(url).code
-      const body = JSON.parse(url).body
+      const url = await HttpHandler.request(`products/${params.id}`, "GET");
+      const code = JSON.parse(url).code;
+      const body = JSON.parse(url).body;
 
       if (code === 200) {
-          const data = JSON.parse(body)
-          setName(data.name)
-          setPrice(data.price)
-          setDesc(data.description)
-          setImage(data.image_url)
+        const data = JSON.parse(body);
+        setName(data.name);
+        setPrice(data.price);
+        setDesc(data.description);
+        setImage(data.image_url);
+        setCategory(data.category.name)
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
   // const handleHeader = async () => {
   //   try {
@@ -48,10 +50,15 @@ const DetailProduct = () => {
   const handleToCart = () => {
     CartManager.addToCart({
       product_id: params.id,
-      qty: 1
-    })
-    console.log(CartManager.getCart())
-  }
+      name: name,
+      category: category,
+      price: parseInt(price),
+      image: image,
+      qty: 1,
+    });
+
+    console.log(CartManager.getCart());
+  };
 
   return (
     <div className="detail-section">
@@ -64,13 +71,13 @@ const DetailProduct = () => {
             <p>4.6 (200 sold)</p>
           </div>
           <h2>Rp. {price.toLocaleString("id-ID")},00</h2>
-          <p>
-            {desc}
-          </p>
+          <p>{desc}</p>
           <hr />
           <div className="detail-button">
             <button>Buy Now</button>
-            <button className="btn-add" onClick={handleToCart}>Add to Cart</button>
+            <button className="btn-add" onClick={handleToCart}>
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
@@ -91,7 +98,7 @@ const DetailProduct = () => {
               <p>Top Rated Merchant</p>
               <p>Best Merchant</p>
             </div>
-          </div> 
+          </div>
         </div>
         <button>Chat Admin</button>
       </div>
@@ -101,7 +108,7 @@ const DetailProduct = () => {
           <h1>Specification</h1>
           <img src={spec} alt="" />
         </div>
-        <div className="spec-vertical" style={{gap: '15px'}}>
+        <div className="spec-vertical" style={{ gap: "15px" }}>
           <h1>In The Box</h1>
           <div className="spec-horizontal">
             <img src={checklist} alt="" />
@@ -126,7 +133,7 @@ const DetailProduct = () => {
         </div>
         <div className="spec-vertical">
           <h1>System Required</h1>
-          <div style={{marginTop: '-10px'}}>
+          <div style={{ marginTop: "-10px" }}>
             <p>-Direct sunlight exposure</p>
             <p>-Direct sunlight exposure</p>
             <p>-Compatible with 5V–20V devices</p>
