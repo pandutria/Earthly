@@ -8,6 +8,7 @@ import spec from "../../../assets/images/spec.png";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import HttpHandler from "../../../data/HttpHandler";
+import CartManager from "../../../data/CartManager";
 
 const DetailProduct = () => {
   const params = useParams();
@@ -15,7 +16,6 @@ const DetailProduct = () => {
   const [image, setImage] = useState("")
   const [desc, setDesc] = useState("")
   const [price, setPrice] = useState("")
-  const [header_id, setHeader] = useState(0)
 
   useEffect(() => {
     fecthProduct()
@@ -45,6 +45,14 @@ const DetailProduct = () => {
   //   }
   // }
 
+  const handleToCart = () => {
+    CartManager.addToCart({
+      product_id: params.id,
+      qty: 1
+    })
+    console.log(CartManager.getCart())
+  }
+
   return (
     <div className="detail-section">
       <div className="detail-container">
@@ -62,7 +70,7 @@ const DetailProduct = () => {
           <hr />
           <div className="detail-button">
             <button>Buy Now</button>
-            <button className="btn-add">Add to Cart</button>
+            <button className="btn-add" onClick={handleToCart}>Add to Cart</button>
           </div>
         </div>
       </div>
