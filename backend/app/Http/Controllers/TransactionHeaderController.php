@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\TransactionHeader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Midtrans\Snap;
+use Midtrans\Config;
 
 class TransactionHeaderController extends Controller
 {
@@ -37,7 +39,31 @@ class TransactionHeaderController extends Controller
             ]);
 
             $th->load('user');
-            return response()->json($th, 201);
+
+             // === MIDTRANS CONFIG ===
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = config('midtrans.is_production');
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+
+        // === MIDTRANS TRANSACTION DATA ===
+        $payload = [
+            'transaction_details' => [
+                'order_id' => 'ORDER-' . $th->id . '-' . time(),
+                'gross_amount' => $th->total_price,
+            ],
+            'customer_details' => [
+                'first_name' => $user->name,
+                'email' => $user->email,
+            ],
+        ];
+
+        $snapToken = Snap::getSnapToken($payload);
+
+        return response()->json([
+            'id' => $th->id,
+            'snap_token' => $snapToken,
+        ], 201);
 
         } catch (\Exception $e) {
             return response()->json([

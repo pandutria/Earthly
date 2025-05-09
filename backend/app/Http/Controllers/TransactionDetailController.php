@@ -18,7 +18,13 @@ class TransactionDetailController extends Controller
     }
 
     public function show($id) {
-        return $transactionDetail = TransactionDetail::with('product')->find($id);
+        $transactionDetail = TransactionDetail::with('product')->find($id);
+
+    if (!$transactionDetail) {
+        return response()->json(['error' => 'Transaction detail not found'], 404);
+    }
+
+    return response()->json($transactionDetail, 200);
     }
 
     public function store(Request $request) {

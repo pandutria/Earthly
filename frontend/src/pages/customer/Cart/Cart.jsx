@@ -4,11 +4,11 @@ import CartManager from "../../../data/CartManager";
 import Location from "../../../assets/images/location.png";
 import HttpHandler from "../../../data/HttpHandler";
 import DataStorage from "../../../helper/DataStorage";
+import Swal from "sweetalert2";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [address, setAddress] = useState("");
-  const [total, setTotal] = useState(0);
   const [headerId, setHeaderId] = useState(0);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Cart = () => {
   const handlePlusQty = (product_id) => {
     const item = cart.find((item) => item.product_id === product_id);
     CartManager.updateQty(product_id, item.qty + 1);
-    setCart(CartManager.getCart()); // Refresh data
+    setCart(CartManager.getCart());
   };
 
   const handleMinusQty = (product_id) => {
@@ -28,7 +28,7 @@ const Cart = () => {
     } else {
       CartManager.updateQty(product_id, item.qty - 1);
     }
-    setCart(CartManager.getCart()); // Refresh data
+    setCart(CartManager.getCart());
   };
 
   const subtotal = cart.reduce((total, item) => {
@@ -36,6 +36,14 @@ const Cart = () => {
   }, 0);
 
   const handlePostHeader = async () => {
+    Swal.fire({
+      title: "Processing Order...",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
     try {
       const json = {
         address: address,
@@ -50,56 +58,40 @@ const Cart = () => {
         "32|nOdUNT5ZXuCtkwyvV6f0OM1KQmuS6dK8vs8QCdSF8f8142f2",
         json
       );
+
       const code = JSON.parse(url).code;
       const body = JSON.parse(url).body;
+
+      Swal.close();
 
       if (code === 201) {
         const data = JSON.parse(body);
         setHeaderId(data.id);
         await handlePostDetail(data.id);
 
-// Delay untuk memastikan data masuk ke database (opsional, bisa coba tanpa ini dulu)
-await new Promise((res) => setTimeout(res, 1000));
-
-await handlePayment(data.id);
+        // === CALL MIDTRANS SNAP ===
+        window.snap.pay(data.snap_token, {
+          onSuccess: function (result) {
+            Swal.fire(
+              "Payment Success!",
+              "Transaction ID: " + result.transaction_id,
+              "success"
+            );
+          },
+          onPending: function (result) {
+            Swal.fire("Pending", "Transaction is pending", "info");
+          },
+          onError: function (result) {
+            Swal.fire("Failed", "Payment Failed", "error");
+          },
+          onClose: function () {
+            Swal.fire("Cancelled", "You closed the payment popup", "warning");
+          },
+        });
       }
     } catch (err) {
       console.log(err);
-    }
-  };
-
-  const handlePayment = async (headerId) => {
-    try {
-      const tokenResponse = await HttpHandler.request(
-        `payment-token/${headerId}`,
-        "GET",
-        "32|nOdUNT5ZXuCtkwyvV6f0OM1KQmuS6dK8vs8QCdSF8f8142f2"
-      );
-      const parsed = JSON.parse(tokenResponse);
-      const snapToken = parsed.snapToken;
-
-      console.log("Snap Token Response:", parsed);
-
-
-      window.snap.pay(snapToken, {
-        onSuccess: function (result) {
-          alert("Pembayaran sukses!");
-          console.log(result);
-        },
-        onPending: function (result) {
-          alert("Menunggu pembayaran...");
-          console.log(result);
-        },
-        onError: function (result) {
-          alert("Pembayaran gagal!");
-          console.log(result);
-        },
-        onClose: function () {
-          alert("Kamu menutup popup tanpa menyelesaikan pembayaran.");
-        },
-      });
-    } catch (err) {
-      console.error("Gagal mengambil snap token:", err);
+      Swal.fire("Error", `${err}`, "error");
     }
   };
 

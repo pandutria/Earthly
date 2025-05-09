@@ -7,7 +7,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionHeaderController;
 use App\Http\Controllers\TransactionDetailController;
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\MidtransControllers;
+use App\Services\MidtransService;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +57,9 @@ Route::get('/td', [TransactionDetailController::class, 'index']);
 Route::post('/td', [TransactionDetailController::class, 'store']);
 Route::get('/td/{id}', [TransactionDetailController::class, 'show']);
 
-Route::get('/payment-token/{header_id}', [PaymentController::class, 'getSnapToken']);
+Route::post('/midtrans/callback', [MidtransController::class, 'callback']);
+
+
 
 
 

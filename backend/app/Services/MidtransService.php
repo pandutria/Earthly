@@ -2,39 +2,51 @@
 
 namespace App\Services;
 
+use Midtrans\Config;
 use Midtrans\Snap;
-use Midtrans\Transaction;
 
 class MidtransService
 {
     public function __construct()
     {
-        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        \Midtrans\Config::$clientKey = env('MIDTRANS_CLIENT_KEY');
-        \Midtrans\Config::$isProduction = false;
-        \Midtrans\Config::$isSanitized = true;
-        \Midtrans\Config::$is3ds = true;
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = config('midtrans.is_production');
+        Config::$isSanitized = config('midtrans.is_sanitized');
+        Config::$is3ds = config('midtrans.is_3ds');
     }
 
-    // Method untuk membuat Snap transaction
     public function createTransaction($order_id, $amount, $name)
 {
     try {
-        $snap_token = \Midtrans\Snap::getSnapToken([
-    'transaction_details' => [
-        'order_id' => 'ORDER-TEST-' . now()->timestamp,
-        'gross_amount' => 100000, // pastikan lebih dari 0
-    ],
-    'customer_details' => [
-        'first_name' => 'John Doe',
-        'email' => 'john.doe@example.com',
-    ],
-]);
+        // Validate parameters
+        if (empty($order_id) || $amount <= 0 || empty($name)) {
+            throw new \InvalidArgumentException('Invalid transaction parameters');
+        }
 
-        return $snap_token;
+        $params = [
+            'transaction_details' => [
+                'order_id' => $order_id,
+                'gross_amount' => (int)$amount, // Ensure integer
+            ],
+            'customer_details' => [
+                'first_name' => substr($name, 0, 50), // Midtrans has length limits
+                'email' => 'customer@example.com', // Required field
+            ],
+            'enabled_payments' => ['credit_card', 'gopay'], // Payment methods
+        ];
+
+        // \Log::info('Midtrans Request:', $params); // Debug logging
+
+        $snapToken = Snap::getSnapToken($params);
+
+        if (!$snapToken) {
+            throw new \RuntimeException('Midtrans returned null token');
+        }
+
+        return $snapToken;
     } catch (\Exception $e) {
-        return null; // Kembalikan null jika gagal
+        // \Log::error('Midtrans Error: '.$e->getMessage());
+        throw $e; // Re-throw for controller handling
     }
 }
-
 }
