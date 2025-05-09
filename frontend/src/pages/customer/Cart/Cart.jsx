@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Cart.css";
 import CartManager from "../../../data/CartManager";
+import Location from "../../../assets/images/location.png";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -10,34 +11,24 @@ const Cart = () => {
   }, []);
 
   const handlePlusQty = (product_id) => {
-    const newCart = cart.map((item) => {
-      if (item.product_id === product_id) {
-        item.qty += 1;
-        CartManager.updateQty(product_id, item.qty);
-      }
-      return item;
-    });
-    setCart([...newCart]);
+    const item = cart.find(item => item.product_id === product_id);
+    CartManager.updateQty(product_id, item.qty + 1);
+    setCart(CartManager.getCart()); // Refresh data
   };
 
   const handleMinusQty = (product_id) => {
-    const newCart = cart
-      .map((item) => {
-        if (item.product_id === product_id) {
-          if (item.qty === 1) {
-            CartManager.removeItem(product_id);
-            return null; // tandai untuk dihapus dari state
-          } else {
-            item.qty -= 1;
-            CartManager.updateQty(product_id, item.qty);
-          }
-        }
-        return item;
-      })
-      .filter((item) => item !== null); // hapus item yg null dari array
-
-    setCart([...newCart]);
+    const item = cart.find(item => item.product_id === product_id);
+    if (item.qty === 1) {
+      CartManager.removeItem(product_id);
+    } else {
+      CartManager.updateQty(product_id, item.qty - 1);
+    }
+    setCart(CartManager.getCart()); // Refresh data
   };
+
+  const subtotal = cart.reduce((total, item) => {
+    return total + item.price * item.qty;
+  }, 0);
 
   return (
     <div className="cart-section">
@@ -53,10 +44,7 @@ const Cart = () => {
           <hr />
 
           {cart.map((item, index) => (
-            <div
-              style={{ display: "flex", flexDirection: "column" }}
-              key={index}
-            >
+            <div key={index} style={{ display: "flex", flexDirection: "column" }}>
               <div className="cart-item">
                 <img src={item.image} alt="" />
                 <div className="cart-text">
@@ -75,6 +63,7 @@ const Cart = () => {
             </div>
           ))}
         </div>
+
         <div className="cart-summary">
           <div className="cart-order">
             <h1>Order Summary</h1>
@@ -82,7 +71,7 @@ const Cart = () => {
             <div className="cart-order-container">
               <div className="cart-order-text">
                 <p>Subtotal</p>
-                <p>Rp. 1.500.000</p>
+                <p>Rp. {subtotal.toLocaleString("id-ID")}</p>
               </div>
               <div className="cart-order-text">
                 <p>Shipping</p>
@@ -91,9 +80,14 @@ const Cart = () => {
             </div>
             <div className="cart-order-total">
               <h2>Total</h2>
-              <h2>Rp. 500.000</h2>
+              <h2>Rp. {subtotal.toLocaleString("id-ID")}</h2>
             </div>
           </div>
+          <div className="login-input-wrapper">
+            <img src={Location} alt="user" className="login-input-icon" />
+            <input type="text" placeholder="Write your address" />
+          </div>
+          <button>CHECKOUT</button>
         </div>
       </div>
     </div>
