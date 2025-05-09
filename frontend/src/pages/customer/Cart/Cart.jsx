@@ -2,22 +2,27 @@ import React, { useState, useEffect } from "react";
 import "./Cart.css";
 import CartManager from "../../../data/CartManager";
 import Location from "../../../assets/images/location.png";
+import HttpHandler from "../../../data/HttpHandler";
+import DataStorage from "../../../helper/DataStorage";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
+  const [address, setAddress] = useState("");
+  const [total, setTotal] = useState(0);
+  const [headerId, setHeaderId] = useState(0);
 
   useEffect(() => {
     setCart(CartManager.getCart());
   }, []);
 
   const handlePlusQty = (product_id) => {
-    const item = cart.find(item => item.product_id === product_id);
+    const item = cart.find((item) => item.product_id === product_id);
     CartManager.updateQty(product_id, item.qty + 1);
     setCart(CartManager.getCart()); // Refresh data
   };
 
   const handleMinusQty = (product_id) => {
-    const item = cart.find(item => item.product_id === product_id);
+    const item = cart.find((item) => item.product_id === product_id);
     if (item.qty === 1) {
       CartManager.removeItem(product_id);
     } else {
@@ -29,6 +34,98 @@ const Cart = () => {
   const subtotal = cart.reduce((total, item) => {
     return total + item.price * item.qty;
   }, 0);
+
+  const handlePostHeader = async () => {
+    try {
+      const json = {
+        address: address,
+        total_price: subtotal,
+        status: "Pending",
+        date: new Date().toISOString().split("T")[0],
+      };
+
+      const url = await HttpHandler.request(
+        "th",
+        "POST",
+        "32|nOdUNT5ZXuCtkwyvV6f0OM1KQmuS6dK8vs8QCdSF8f8142f2",
+        json
+      );
+      const code = JSON.parse(url).code;
+      const body = JSON.parse(url).body;
+
+      if (code === 201) {
+        const data = JSON.parse(body);
+        setHeaderId(data.id);
+        await handlePostDetail(data.id);
+
+// Delay untuk memastikan data masuk ke database (opsional, bisa coba tanpa ini dulu)
+await new Promise((res) => setTimeout(res, 1000));
+
+await handlePayment(data.id);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handlePayment = async (headerId) => {
+    try {
+      const tokenResponse = await HttpHandler.request(
+        `payment-token/${headerId}`,
+        "GET",
+        "32|nOdUNT5ZXuCtkwyvV6f0OM1KQmuS6dK8vs8QCdSF8f8142f2"
+      );
+      const parsed = JSON.parse(tokenResponse);
+      const snapToken = parsed.snapToken;
+
+      console.log("Snap Token Response:", parsed);
+
+
+      window.snap.pay(snapToken, {
+        onSuccess: function (result) {
+          alert("Pembayaran sukses!");
+          console.log(result);
+        },
+        onPending: function (result) {
+          alert("Menunggu pembayaran...");
+          console.log(result);
+        },
+        onError: function (result) {
+          alert("Pembayaran gagal!");
+          console.log(result);
+        },
+        onClose: function () {
+          alert("Kamu menutup popup tanpa menyelesaikan pembayaran.");
+        },
+      });
+    } catch (err) {
+      console.error("Gagal mengambil snap token:", err);
+    }
+  };
+
+  const handlePostDetail = async (headerId) => {
+    try {
+      for (let i = 0; i < cart.length; i++) {
+        const json = {
+          product_id: cart[i].product_id,
+          header_id: headerId,
+          qty: cart[i].qty,
+          price: cart[i].price,
+        };
+
+        const url = await HttpHandler.request("td", "POST", null, json);
+        const code = JSON.parse(url).code;
+
+        if (code !== 201) {
+          console.error("Failed to post detail:", json);
+        }
+      }
+      CartManager.clearCart();
+      setCart([]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="cart-section">
@@ -44,7 +141,10 @@ const Cart = () => {
           <hr />
 
           {cart.map((item, index) => (
-            <div key={index} style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              key={index}
+              style={{ display: "flex", flexDirection: "column" }}
+            >
               <div className="cart-item">
                 <img src={item.image} alt="" />
                 <div className="cart-text">
@@ -80,14 +180,21 @@ const Cart = () => {
             </div>
             <div className="cart-order-total">
               <h2>Total</h2>
-              <h2>Rp. {subtotal.toLocaleString("id-ID")}</h2>
+              <h2 onChange={(x) => setTotal(x.target.value)}>
+                Rp. {subtotal.toLocaleString("id-ID")}
+              </h2>
             </div>
           </div>
           <div className="login-input-wrapper">
             <img src={Location} alt="user" className="login-input-icon" />
-            <input type="text" placeholder="Write your address" />
+            <input
+              type="text"
+              placeholder="Write your address"
+              value={address}
+              onChange={(x) => setAddress(x.target.value)}
+            />
           </div>
-          <button>CHECKOUT</button>
+          <button onClick={handlePostHeader}>CHECKOUT</button>
         </div>
       </div>
     </div>

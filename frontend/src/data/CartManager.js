@@ -13,7 +13,8 @@ const CartManager = {
   },
 
   getCart() {
-    return this.cart;
+    this.cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  return this.cart;
   },
 
   updateQty(product_id, qty) {

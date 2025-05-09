@@ -18,7 +18,7 @@ class TransactionDetailController extends Controller
     }
 
     public function show($id) {
-        $transactionDetail = TransactionDetail::with('product')->find($id);
+        return $transactionDetail = TransactionDetail::with('product')->find($id);
     }
 
     public function store(Request $request) {
