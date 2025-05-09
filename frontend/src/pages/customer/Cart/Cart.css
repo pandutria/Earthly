@@ -158,6 +158,7 @@ html {
   flex-direction: column;
   background-color: #EDEDED;
   width: 300px;
+  height: 180px;
 }
 
 .cart-section .cart-summary .cart-order h1 {
@@ -188,4 +189,21 @@ html {
   margin: 0 auto;
   padding: 0 0px; /* Optional: Add padding for better spacing */
 }
+
+.cart-section .cart-summary .cart-order .cart-order-total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #D5D5D5;
+  padding: 10px 22px;
+
+}
+
+.cart-section .cart-summary .cart-order .cart-order-total h2{
+ font-family: var(--poppins-regular);
+  font-weight: 400;
+  font-size: 17px;
+}
+
+
 

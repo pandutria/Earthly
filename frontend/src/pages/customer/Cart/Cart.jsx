@@ -89,6 +89,10 @@ const Cart = () => {
                 <p>Rp. 0</p>
               </div>
             </div>
+            <div className="cart-order-total">
+              <h2>Total</h2>
+              <h2>Rp. 500.000</h2>
+            </div>
           </div>
         </div>
       </div>
