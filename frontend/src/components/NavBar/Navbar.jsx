@@ -12,6 +12,10 @@
             navigate("/main/customer/cart")
         }
 
+        const navigateToHistory = () => {
+            navigate("/main/customer/history")
+        }
+
         return (
             <div className="navbar">
                 <div className="logo-container">
@@ -27,7 +31,7 @@
                 </div>
                 <div className="transaction-container">
                     <img src={Cart} alt="" onClick={navigateToCart} />
-                    <img src={History} alt="" />
+                    <img src={History} alt=""  onClick={navigateToHistory}/>
                 </div>
             </div>
         )

@@ -64,14 +64,15 @@ html {
   font-weight: 400;
   font-size: 30px;
   align-self: self-start;
+  margin-left: 60px;
 }
 
 .section-history .item-history {
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  width: 1000px;
-  height: 200px;
+  width: 1400px;
+  height: auto;
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.6);
   padding: 20px 30px;
 }
@@ -111,4 +112,82 @@ html {
   height: 1px;
   background-color: #c2c2c2;
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.section-history .item-history-detail {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px 0px;
+}
+
+.section-history .item-history-detail img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.section-history .item-history-detail .item-history-detail-text {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.section-history .item-history-detail .item-history-detail-text h2 {
+  font-size: 30px;
+  font-family: var(--poppins-semibold);
+  font-weight: 400;
+}
+
+.section-history .item-history-detail .item-history-detail-text p {
+  font-size: 13.5px;
+  font-family: var(--poppins-medium);
+  font-weight: 400;
+  color: #828282;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* batas maksimal 2 baris */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 400px;
+}
+
+.section-history .item-history-detail .item-history-detail-text .view {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.section-history .item-history-detail .item-history-detail-text .view img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.item-history-detail-text-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.item-history-detail-text-container button {
+    height: 50px;
+    width: 150px;
+    background-color: #67AE6E;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-family: var(--poppins-semibold);
+    font-size: 17px;
 }
