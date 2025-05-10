@@ -54,6 +54,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 30px 0px;
 }
 
 .cart-section h1 {
@@ -61,6 +62,11 @@ html {
   font-family: var(--poppins-semibold);
   font-weight: 400;
   align-self: self-start;
+}
+
+.cart-section .h1 {
+  margin-left: 175px;
+  margin-bottom: 30px;
 }
 
 .cart-header {

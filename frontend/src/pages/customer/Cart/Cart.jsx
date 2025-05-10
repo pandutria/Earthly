@@ -3,7 +3,6 @@ import "./Cart.css";
 import CartManager from "../../../data/CartManager";
 import Location from "../../../assets/images/location.png";
 import HttpHandler from "../../../data/HttpHandler";
-import DataStorage from "../../../helper/DataStorage";
 import Swal from "sweetalert2";
 
 const Cart = () => {
@@ -75,7 +74,9 @@ const Cart = () => {
             Swal.fire(
               "Payment Success!",
               "Transaction ID: " + result.transaction_id,
-              "success"
+              "success",
+              CartManager.clearCart(),
+              setCart([])
             );
           },
           onPending: function (result) {
@@ -112,8 +113,6 @@ const Cart = () => {
           console.error("Failed to post detail:", json);
         }
       }
-      CartManager.clearCart();
-      setCart([]);
     } catch (err) {
       console.log(err);
     }
@@ -121,7 +120,7 @@ const Cart = () => {
 
   return (
     <div className="cart-section">
-      <h1>Your Cart</h1>
+      <h1 className="h1">Your Cart</h1>
       <div style={{ display: "flex", flexDirection: "row", gap: "60px" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div className="cart-header">

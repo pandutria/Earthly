@@ -1,0 +1,114 @@
+:root {
+  --poppins-semibold: poppins-semibold;
+  --poppins-bold: poppins-bold;
+  --poppins-medium: poppins-medium;
+  --poppins-regular: poppins-regular;
+  --primary-color: #7b936f;
+  --secondary-color: #5d706c;
+  --krem-color: #f3ebe0;
+  --hint-color: #898989;
+  --gray-color: #494949;
+  --font-color: #393a37;
+  --bounce-animation: bounce 10s ease-in-out infinite;
+  --transition-hover: all ease-in-out 0.2s;
+}
+
+@font-face {
+  font-family: poppins-semibold;
+  src: url("../../assets/font/poppins_semibold.ttf");
+}
+
+@font-face {
+  font-family: poppins-bold;
+  src: url("../../assets/font/poppins_bold.ttf");
+}
+
+@font-face {
+  font-family: poppins-medium;
+  src: url("../../assets/font/poppins_medium.ttf");
+}
+
+@font-face {
+  font-family: poppins-regular;
+  src: url("../../assets/font/poppins_regular.ttf");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: black;
+  overflow-x: hidden;
+  font-family: var(--poppins-regular);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.section-history {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0px;
+  gap: 30px;
+}
+
+.section-history .h1 {
+  color: black;
+  font-family: var(--poppins-semibold);
+  font-weight: 400;
+  font-size: 30px;
+  align-self: self-start;
+}
+
+.section-history .item-history {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  width: 1000px;
+  height: 200px;
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.6);
+  padding: 20px 30px;
+}
+
+.section-history .item-history .item-history-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.section-history .item-history .item-history-header .item-history-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-history
+  .item-history
+  .item-history-header
+  .item-history-header-text
+  h2 {
+  font-family: var(--poppins-medium);
+  font-weight: 400;
+  font-size: 15px;
+}
+.section-history
+  .item-history
+  .item-history-header
+  .item-history-header-text
+  p {
+  font-family: var(--poppins-semibold);
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.section-history hr {
+  border: none;
+  height: 1px;
+  background-color: #c2c2c2;
+  margin-top: 20px;
+}

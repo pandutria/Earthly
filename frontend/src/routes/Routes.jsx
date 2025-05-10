@@ -11,6 +11,7 @@ import ManageProduct from '../pages/admin/Main/ManageProduct/ManageProduct';
 import Catalog from '../pages/customer/Catalog/Catalog';
 import DetailProduct from '../pages/customer/detailProduct/DetailProduct';
 import Cart from '../pages/customer/Cart/Cart';
+import History from '../pages/customer/History/History';
 
 function Router() {
     return (
@@ -23,6 +24,7 @@ function Router() {
                  <Route path='/main/customer/catalog' element={<Catalog/>}/>
                  <Route path='/main/customer/product/:id' element={<DetailProduct/>}/>
                  <Route path='/main/customer/cart' element={<Cart/>}/>
+                 <Route path='/main/customer/history' element={<History/>}/>
                  <Route path='/main/admin' element={<MainAdmin/>}/>
                  <Route path='/main/admin/category' element={<Category/>}/>
                  <Route path='/main/admin/product' element={<Product/>}/>
