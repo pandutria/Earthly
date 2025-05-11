@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./ReviewPopup.css";
+import rating from "../../assets/images/rating.png";
 
 const ReviewPopup = ({ onClose, product, onSubmit }) => {
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState("");
 
   const handleSubmit = () => {
     onSubmit(review);
@@ -12,15 +13,17 @@ const ReviewPopup = ({ onClose, product, onSubmit }) => {
   return (
     <div className="popup-overlay">
       <div className="popup">
-        <h2>Review Produk</h2> {/* Karena product adalah ID, kita tidak bisa tampilkan nama */}
-        <textarea
-          placeholder="Tulis review kamu di sini..."
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
-        />
-        <div className="popup-buttons">
-          <button onClick={onClose}>Batal</button>
-          <button onClick={handleSubmit}>Kirim</button>
+        <div className="popup-section">
+          <h1>Add a Review</h1>
+          <p>Add Your Rating</p>
+          <img src={rating} alt="" />
+          <p>Write Your Review</p>
+          <textarea
+            placeholder="Write here..."
+            value={review}
+            onChange={(e) => setReview(e.target.value)}
+          />
+          <button>Submit</button>
         </div>
       </div>
     </div>
