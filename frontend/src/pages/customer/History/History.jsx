@@ -7,6 +7,7 @@ import wonder1 from "../../../assets/images/wonder1.png";
 import Eye from "../../../assets/images/eye.png";
 import Qty from "../../../assets/images/cartQty.png";
 import Pay from "../../../assets/images/pay.png";
+import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 
 const History = () => {
@@ -45,6 +46,15 @@ const History = () => {
   }, []);
 
   const handleDetail = async (headerId, index) => {
+
+    Swal.fire({
+          title: 'Loading',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+    
     try {
       const url = await HttpHandler.request(
         `td?transactionHeader=${headerId}`,
@@ -52,6 +62,8 @@ const History = () => {
       );
       const code = JSON.parse(url).code;
       const body = JSON.parse(url).body;
+
+      Swal.close();
 
       if (code === 200) {
         const detailData = JSON.parse(body);

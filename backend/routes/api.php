@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionHeaderController;
 use App\Http\Controllers\TransactionDetailController;
 use App\Http\Controllers\MidtransControllers;
+use App\Http\Controllers\ReviewsController;
 use App\Services\MidtransService;
 
 
@@ -37,7 +38,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/th', [TransactionHeaderController::class, 'index']);
     Route::get('/th/{id}', [TransactionHeaderController::class, 'show']);
     Route::post('/th', [TransactionHeaderController::class, 'store']);
+
+    Route::post('/review', [ReviewsController::class, 'store']);
 });
+
+Route::get('/review', [ReviewsController::class, 'index']);
+    Route::get('/review/{id}', [ReviewsController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
