@@ -9,6 +9,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import HttpHandler from "../../../data/HttpHandler";
 import CartManager from "../../../data/CartManager";
+import star from "../../../assets/images/star.png";
+import Swal from "sweetalert2";
 
 const DetailProduct = () => {
   const params = useParams();
@@ -16,13 +18,25 @@ const DetailProduct = () => {
   const [image, setImage] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("");
+  const [products, useProducts] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     fecthProduct();
-  }, []);
+    fecthProducts();
+  }, [params.id]);
 
   const fecthProduct = async () => {
+
+    Swal.fire({
+              title: 'Loading',
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              }
+            });
+
     try {
       const url = await HttpHandler.request(`products/${params.id}`, "GET");
       const code = JSON.parse(url).code;
@@ -34,7 +48,8 @@ const DetailProduct = () => {
         setPrice(data.price);
         setDesc(data.description);
         setImage(data.image_url);
-        setCategory(data.category.name)
+        setCategory(data.category.name);
+        Swal.close()
       }
     } catch (err) {
       console.log(err);
@@ -59,6 +74,26 @@ const DetailProduct = () => {
 
     console.log(CartManager.getCart());
   };
+
+  const fecthProducts = async () => {
+    try {
+      const url = await HttpHandler.request("products", "GET");
+      const code = JSON.parse(url).code;
+      const body = JSON.parse(url).body;
+
+      if (code === 200) {
+        const data = JSON.parse(body);
+        useProducts(data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+   const navigateToDetail = (id) => {
+      navigate(`/main/customer/product/${id}`)
+      fecthProduct()
+  }
 
   return (
     <div className="detail-section">
@@ -139,6 +174,30 @@ const DetailProduct = () => {
             <p>-Compatible with 5V–20V devices</p>
             <p>-Optional power storage bank</p>
           </div>
+        </div>
+      </div>
+      <hr />
+      <div className="product-section">
+        <h3>Related Product</h3>
+        <div className="product-container">
+          {products.map((product, index) => (
+            <div
+              className="product-item"
+              key={index}
+              onClick={() => navigateToDetail(product.id)}
+            >
+              <img src={product.image_url} alt="" />
+              <div className="product-item-text">
+                <p>{product.category.name}</p>
+                <h1>{product.name}</h1>
+                <div className="product-item-text-rating">
+                  <img src={star} alt="" />
+                  <h2>(10 Review)</h2>
+                </div>
+                <h3>Rp. {product.price.toLocaleString("id-ID")},00</h3>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

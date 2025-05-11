@@ -43,7 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('/review', [ReviewsController::class, 'index']);
-    Route::get('/review/{id}', [ReviewsController::class, 'show']);
+Route::get('/review/{id}', [ReviewsController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);

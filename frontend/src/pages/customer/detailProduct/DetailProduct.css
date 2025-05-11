@@ -1,58 +1,58 @@
 :root {
-    --poppins-semibold: poppins-semibold;
-    --poppins-bold: poppins-bold;
-    --poppins-medium: poppins-medium;
-    --poppins-regular: poppins-regular;
-    --main-color: #7B936F;
-    --secondary-color: #67ae6e;
-    --hint-color: #898989;
-    --gray-color: #494949;
-    --bounce-animation: bounce 10s ease-in-out infinite;
-    --transition-hover: all ease-in-out 0.2s;
-  }
-  
-  @font-face {
-    font-family: poppins-semibold;
-    src: url("../../assets/font/poppins_semibold.ttf");
-  }
-  
-  @font-face {
-    font-family: poppins-bold;
-    src: url("../../assets/font/poppins_bold.ttf");
-  }
-  
-  @font-face {
-    font-family: poppins-medium;
-    src: url("../../assets/font/poppins_medium.ttf");
-  }
-  
-  @font-face {
-    font-family: poppins-regular;
-    src: url("../../assets/font/poppins_regular.ttf");
-  }
-  
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background-color: white;
-    overflow-x: hidden;
-    font-family: var(--poppins-regular);
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
+  --poppins-semibold: poppins-semibold;
+  --poppins-bold: poppins-bold;
+  --poppins-medium: poppins-medium;
+  --poppins-regular: poppins-regular;
+  --main-color: #7b936f;
+  --secondary-color: #67ae6e;
+  --hint-color: #898989;
+  --gray-color: #494949;
+  --bounce-animation: bounce 10s ease-in-out infinite;
+  --transition-hover: all ease-in-out 0.2s;
+}
+
+@font-face {
+  font-family: poppins-semibold;
+  src: url("../../assets/font/poppins_semibold.ttf");
+}
+
+@font-face {
+  font-family: poppins-bold;
+  src: url("../../assets/font/poppins_bold.ttf");
+}
+
+@font-face {
+  font-family: poppins-medium;
+  src: url("../../assets/font/poppins_medium.ttf");
+}
+
+@font-face {
+  font-family: poppins-regular;
+  src: url("../../assets/font/poppins_regular.ttf");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: white;
+  overflow-x: hidden;
+  font-family: var(--poppins-regular);
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 .detail-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 30px;
-    padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 40px;
 }
 
 .detail-section .detail-container {
@@ -63,7 +63,7 @@
 
 .detail-section .detail-container img {
   width: 530px;
-  height: auto;
+  height: 400px;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -102,7 +102,7 @@
 }
 
 .detail-section .detail-container .detail-text h2 {
-  color: #009F56;
+  color: #009f56;
   font-size: 35px;
   font-family: var(--poppins-semibold);
   font-weight: 400;
@@ -124,7 +124,7 @@
   margin-top: 30px;
   width: 590px;
   height: 1px;
-  background-color: #C2C2C2;
+  background-color: #c2c2c2;
   border: none;
 }
 
@@ -137,7 +137,7 @@
 
 .detail-section .detail-container .detail-text .detail-button button {
   color: white;
-  background-color: #67AE6E;
+  background-color: #67ae6e;
   border-radius: 7px;
   padding: 10px 60px;
   border: none;
@@ -145,11 +145,11 @@
 }
 
 .detail-section .detail-container .detail-text .detail-button .btn-add {
-  color: #67AE6E;
+  color: #67ae6e;
   background-color: white;
   border-radius: 7px;
   padding: 10px 60px;
-  border: 2px solid #67AE6E;
+  border: 2px solid #67ae6e;
   font-family: var(--poppins-bold);
 }
 
@@ -174,7 +174,7 @@
   margin-top: 30px;
   width: 1180px;
   height: 1px;
-  background-color: #C2C2C2;
+  background-color: #c2c2c2;
   border: none;
 }
 
@@ -185,7 +185,6 @@
   padding-top: 20px;
   font-family: var(--poppins-semibold);
   font-weight: 400;
-
 }
 
 .merchant-container {
@@ -234,19 +233,18 @@
 }
 
 .detail-section .horizontal .vertical .horizontal-text p {
-  color: #00BE13;
+  color: #00be13;
   font-size: 12px;
   font-family: var(--poppins-semibold);
   font-weight: 400;
   background-color: rgba(0, 255, 25, 0.15);
   padding: 5px 10px;
   border-radius: 5px;
-
 }
 
-.merchant-container  button {
+.merchant-container button {
   color: white;
-  background-color: #67AE6E;
+  background-color: #67ae6e;
   border-radius: 7px;
   padding: 0px 40px;
   border: none;
@@ -296,4 +294,103 @@
   font-weight: 400;
   font-size: 15px;
   align-items: center;
+}
+
+.detail-section .related-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-section .related-container .item-related {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-section .product-container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px 57px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 30px;
+  justify-content: center;
+}
+
+.product-section h3 {
+  align-self: self-start;
+  margin-left: 10px;
+  font-family: var(--poppins-semibold);
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.product-section .product-container .product-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-section .product-container .product-item img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.product-section .product-container .product-item .product-item-text {
+  box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.product-section .product-container .product-item .product-item-text p {
+  font-size: 15px;
+  font-family: var(--poppins-regular);
+}
+
+.product-section .product-container .product-item .product-item-text h1 {
+  font-size: 24px;
+  font-family: var(--poppins-medium);
+  font-weight: 300;
+}
+
+.product-section .product-container .product-item .product-item-text h3 {
+  font-size: 18px;
+  font-family: var(--poppins-medium);
+  font-weight: 300;
+  color: #009f56;
+  margin-top: 5px;
+}
+
+.product-section
+  .product-container
+  .product-item
+  .product-item-text
+  .product-item-text-rating {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  align-items: center;
+}
+
+.product-section
+  .product-container
+  .product-item
+  .product-item-text
+  .product-item-text-rating
+  img {
+  width: 85px;
+  height: auto;
+}
+
+.product-section
+  .product-container
+  .product-item
+  .product-item-text
+  .product-item-text-rating
+  h2 {
+  font-size: 10px;
+  font-family: var(--poppins-medium);
+  color: #828282;
+  font-weight: 400;
+  margin-left: 7px;
 }

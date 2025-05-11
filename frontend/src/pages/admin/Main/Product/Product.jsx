@@ -122,7 +122,7 @@ const Product = () => {
                   <td>{item.category.name}</td>
                   <td style={{textOverflow: 'ellipsis', maxWidth: '150px', overflow: 'hidden', whiteSpace: 'nowrap'}}>{item.description}</td>
                   <td>Rp {item.price.toLocaleString("id-ID")}</td>
-                  <td>0</td>
+                  <td>{item.total_reviews} Reviews</td>
                   <td>
                     <div className="btn-container">
                       <button className="edit-btn" onClick={() => handle(item.id)}>

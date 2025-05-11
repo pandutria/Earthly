@@ -23,7 +23,7 @@ const ReviewPopup = ({ onClose, product, onSubmit }) => {
             value={review}
             onChange={(e) => setReview(e.target.value)}
           />
-          <button>Submit</button>
+          <button onClick={handleSubmit}>Submit</button>
         </div>
       </div>
     </div>

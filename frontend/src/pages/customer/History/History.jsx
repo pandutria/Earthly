@@ -94,18 +94,32 @@ const History = () => {
   };
 
    const handleSubmitReview = async (reviewText) => {
+
+    Swal.fire({
+          title: 'Loading',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+
     try {
       const json = {
         review: reviewText,
-        product_id: selectedProduct,
-        date: new Date().toISOString(),
+        product_id: selectedProduct.id,
+        date: "2023-05-15",
       }
-      const url = await HttpHandler.request('reviews', "POST, 33|xOrGlCXA5nd91vLEamRMGfHPXQ9lS94u6l4QWaED3698ad12", json)
+      const url = await HttpHandler.request('review', "POST", "33|xOrGlCXA5nd91vLEamRMGfHPXQ9lS94u6l4QWaED3698ad12", json)
       const code = JSON.parse(url).code
 
+      Swal.close()
+
+      // console.log(code)
+
       if (code === 201) {
-        alert("berhasil")
-      }
+        // alert("berhasil")
+        Swal.fire("Success", "Create review", "success");
+      } 
     } catch (err) {
       console.log(err)
     }

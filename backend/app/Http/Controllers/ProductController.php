@@ -15,12 +15,16 @@ class ProductController extends Controller
             $query->where('name', 'LIKE', '%'. $search . '%');
         }
 
-        return $query->with('category')->get();
+        return $query->with('category')->withCount(['reviews as total_reviews'])->get();
     }
 
     public function show($id)
     {
-        return Product::with('category')->find($id);
+        $product = Product::with('category')
+                      ->withCount(['reviews as total_reviews'])
+                      ->find($id);
+
+        return response()->json($product);
     }
 
     public function store(Request $request)
