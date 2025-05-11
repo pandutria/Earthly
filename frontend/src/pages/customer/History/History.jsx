@@ -9,10 +9,14 @@ import Qty from "../../../assets/images/cartQty.png";
 import Pay from "../../../assets/images/pay.png";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
+import ReviewPopup from "../../../components/Review/ReviewPopup.jsx";
 
 const History = () => {
   const [header, setHeader] = useState([]);
   const navigate = useNavigate()
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
 
   const navigateToDetailProduct = (id) => {
     navigate(`/main/customer/product/${id}`)
@@ -89,6 +93,25 @@ const History = () => {
     return "Rp. " + number.toLocaleString("id-ID") + ",00";
   };
 
+   const handleSubmitReview = async (reviewText) => {
+    try {
+      const json = {
+        review: reviewText,
+        product_id: selectedProduct,
+        date: new Date().toISOString(),
+      }
+      const url = await HttpHandler.request('reviews', "POST, 33|xOrGlCXA5nd91vLEamRMGfHPXQ9lS94u6l4QWaED3698ad12", json)
+      const code = JSON.parse(url).code
+
+      if (code === 201) {
+        alert("berhasil")
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
+
   return (
     <div className="section-history">
       <h1 className="h1">Your Orders</h1>
@@ -150,12 +173,22 @@ const History = () => {
                       </div>
                     </div>
                   </div>
-                  <button>Add Review</button>
+                  <button onClick={() => {
+                      setSelectedProduct(detail.product);
+                      setShowPopup(true);
+                    }}>Add Review</button>
                 </div>
               </div>
             ))}
         </div>
       ))}
+       {showPopup && selectedProduct && (
+        <ReviewPopup
+          product={selectedProduct}
+          onClose={() => setShowPopup(false)}
+          onSubmit={handleSubmitReview}
+        />
+      )}
     </div>
   );
 };
