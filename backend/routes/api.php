@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/review', [ReviewsController::class, 'store']);
 });
 
+Route::get('/publicReview', [ReviewsController::class, 'publicIndex']);
 Route::get('/review', [ReviewsController::class, 'index']);
 Route::get('/review/{id}', [ReviewsController::class, 'show']);
 
@@ -57,6 +58,7 @@ Route::post('/products', [ProductController::class, 'store']);
 Route::put('/products/{id}', [ProductController::class, 'update']);
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
+Route::get('/publicTh', [TransactionHeaderController::class, 'publicIndex']);
 Route::put('/th/{id}', [TransactionHeaderController::class, 'update']);
 
 Route::get('/td', [TransactionDetailController::class, 'index']);

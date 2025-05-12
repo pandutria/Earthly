@@ -9,6 +9,11 @@ use Midtrans\Config;
 
 class TransactionHeaderController extends Controller
 {
+
+    public function publicIndex() {
+        return TransactionHeader::all();
+    }
+
     public function index() {
 
         return TransactionHeader::with('user')->get();

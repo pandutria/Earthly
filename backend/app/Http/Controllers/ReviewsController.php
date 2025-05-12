@@ -7,9 +7,20 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewsController extends Controller
 {
-    public function index() {
 
-        return Reviews::with(['user', 'product'])->get();
+    public function publicIndex() {
+        return Reviews::all();
+    }
+
+    public function index(Request $request) {
+
+        $query = Reviews::query();
+
+        if ($request->has('product_id')) {
+            $query->where('product_id', $request->input('product_id'));
+        }
+
+        return $query->with(['user', 'product'])->get();
 
     }
 

@@ -12,6 +12,7 @@ import Catalog from '../pages/customer/Catalog/Catalog';
 import DetailProduct from '../pages/customer/detailProduct/DetailProduct';
 import Cart from '../pages/customer/Cart/Cart';
 import History from '../pages/customer/History/History';
+import Dashboard from '../pages/admin/Main/Dashboard/Dashboard';
 
 function Router() {
     return (

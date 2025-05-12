@@ -253,7 +253,7 @@
     color: #c0392b;
     font-size: 18px;
     cursor: pointer;
-    width: 35px;
+    padding: 10px 15px;
     background-color: #FF0000;
     border-radius: 6px;
   }

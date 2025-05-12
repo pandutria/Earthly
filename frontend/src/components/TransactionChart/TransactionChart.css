@@ -1,0 +1,112 @@
+:root {
+  --poppins-semibold: poppins-semibold;
+  --poppins-bold: poppins-bold;
+  --poppins-medium: poppins-medium;
+  --poppins-regular: poppins-regular;
+  --primary-color: #7b936f;
+  --secondary-color: #5d706c;
+  --krem-color: #f3ebe0;
+  --hint-color: #898989;
+  --gray-color: #494949;
+  --font-color: #393a37;
+  --bounce-animation: bounce 10s ease-in-out infinite;
+  --transition-hover: all ease-in-out 0.2s;
+}
+
+@font-face {
+  font-family: poppins-semibold;
+  src: url("../../assets/font/poppins_semibold.ttf");
+}
+
+@font-face {
+  font-family: poppins-bold;
+  src: url("../../assets/font/poppins_bold.ttf");
+}
+
+@font-face {
+  font-family: poppins-medium;
+  src: url("../../assets/font/poppins_medium.ttf");
+}
+
+@font-face {
+  font-family: poppins-regular;
+  src: url("../../assets/font/poppins_regular.ttf");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: white;
+  overflow-x: hidden;
+  font-family: var(--poppins-regular);
+}
+
+.transaction-chart-container {
+  width: 100%;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.chart-title {
+  margin-bottom: 20px;
+  font-family: var(--poppins-bold);
+  color: var(--font-color);
+  font-size: 1.2rem;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 300px;
+}
+
+.recharts-cartesian-grid-horizontal line {
+  stroke: #eaeaea;
+}
+
+.recharts-x-axis .recharts-cartesian-axis-tick text,
+.recharts-y-axis .recharts-cartesian-axis-tick text {
+  font-family: var(--poppins-regular);
+  font-style: italic;
+  font-size: 0.8rem;
+  fill: var(--secondary-color);
+}
+
+.recharts-x-axis .recharts-cartesian-axis-tick line,
+.recharts-y-axis .recharts-cartesian-axis-tick line {
+  display: none;
+}
+
+.recharts-tooltip-cursor {
+  fill: rgba(103, 174, 110, 0.1);
+}
+
+.recharts-default-tooltip {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border: none !important;
+  padding: 8px 12px !important;
+  background: white !important;
+  font-family: var(--poppins-regular) !important;
+}
+
+.recharts-tooltip-item {
+  color: var(--secondary-color) !important;
+  font-family: var(--poppins-medium) !important;
+}
+
+.recharts-tooltip-item-name {
+  margin-right: 8px !important;
+  font-style: italic !important;
+}
+
+.recharts-tooltip-item-value {
+  color: var(--font-color) !important;
+  font-family: var(--poppins-bold) !important;
+}
