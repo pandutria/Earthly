@@ -13,6 +13,10 @@
   --transition-hover: all ease-in-out 0.2s;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: poppins-semibold;
   src: url("../../assets/font/poppins_semibold.ttf");

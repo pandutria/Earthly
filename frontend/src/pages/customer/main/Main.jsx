@@ -61,7 +61,7 @@ const Main = () => {
   return (
     <div className="">
       <Navbar />
-      <div className="home-section">
+      <div id="home" className="home-section">
         <div className="home-top">
           <img src={homeImage} alt="" />
           <div className="home-right">
@@ -95,7 +95,7 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="after-home-section">
+      <div id="about" className="after-home-section">
         <div className="after-home-text">
           <h1>Lorem Ipsum</h1>
           <p>
@@ -146,7 +146,7 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="product-section">
+      <div id="e-commerce" className="product-section">
         <h1>Featured Product</h1>
         <div className="product-container">
           {products.slice(0, 8).map((product, index) => (

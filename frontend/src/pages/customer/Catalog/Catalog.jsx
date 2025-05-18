@@ -58,46 +58,59 @@ const Catalog = () => {
   }
 
   return (
-    <div className="section-catalog">
-      <h1>Catalog Products</h1>
-      <div className="filter-container">
-        <div className="login-input-wrapper">
-          <img src={Search} alt="user" className="login-input-icon" />
-          <input type="text" placeholder="Search Product..." 
-          value={search}
-          onChange={(x) => setSearch(x.target.value)}/>
-        </div>
-        <select
-          value={selectedCategoryId}
-          onChange={(e) => setSelectedCategoryId(e.target.value)}
-        >
-          <option value="">-- Select Category --</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="product-container">
-        {products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()) && (selectedCategoryId === "" || product.category.id === Number(selectedCategoryId)))
-        .map((product, index) => (
-          <div className="product-item" key={index} onClick={() => navigateToDetail(product.id)}>
-            <img src={product.image_url} alt="" />
-            <div className="product-item-text">
-              <p>{product.category.name}</p>
-              <h1>{product.name}</h1>
-              <div className="product-item-text-rating">
-                <img src={star} alt="" />
-                <h2>(10 Review)</h2>
-              </div>
-              <h3>Rp. {product.price.toLocaleString("id-ID")},00</h3>
-            </div>
-          </div>
-        ))}
-      </div>
+    <div className="catalog-section">
+  <h1 className="catalog-title">Catalog Products</h1>
+  <div className="catalog-filter-wrapper">
+    <div className="catalog-search-input-wrapper">
+      <img src={Search} alt="search" className="catalog-search-icon" />
+      <input
+        type="text"
+        placeholder="Search Product..."
+        value={search}
+        onChange={(x) => setSearch(x.target.value)}
+      />
     </div>
+    <select
+      value={selectedCategoryId}
+      onChange={(e) => setSelectedCategoryId(e.target.value)}
+    >
+      <option value="">-- Select Category --</option>
+      {categories.map((cat) => (
+        <option key={cat.id} value={cat.id}>
+          {cat.name}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  <div className="catalog-product-container">
+    {products
+      .filter(
+        (product) =>
+          product.name.toLowerCase().includes(search.toLowerCase()) &&
+          (selectedCategoryId === "" ||
+            product.category.id === Number(selectedCategoryId))
+      )
+      .map((product, index) => (
+        <div
+          className="catalog-product-item"
+          key={index}
+          onClick={() => navigateToDetail(product.id)}
+        >
+          <img src={product.image_url} alt={product.name} />
+          <div className="catalog-product-info">
+            <p>{product.category.name}</p>
+            <h1>{product.name}</h1>
+            <div className="catalog-product-rating">
+              <img src={star} alt="rating" />
+              <h2>(10 Review)</h2>
+            </div>
+            <h3>Rp. {product.price.toLocaleString("id-ID")},00</h3>
+          </div>
+        </div>
+      ))}
+  </div>
+</div>
   );
 };
 

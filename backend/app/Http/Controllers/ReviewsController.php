@@ -9,20 +9,19 @@ class ReviewsController extends Controller
 {
 
     public function publicIndex() {
-        return Reviews::all();
+        return Reviews::with(['user', 'product'])->get();
     }
 
-    public function index(Request $request) {
+   public function index(Request $request) {
+    $query = Reviews::query();
 
-        $query = Reviews::query();
-
-        if ($request->has('product_id')) {
-            $query->where('product_id', $request->input('product_id'));
-        }
-
-        return $query->with(['user', 'product'])->get();
-
+    if ($request->has('product_id')) {
+        $query->where('product_id', $request->input('product_id'));
     }
+
+    return $query->get(); // remove 'with'
+}
+
 
     public function show($id) {
         return Reviews::with(['user', 'product'])->find($id);

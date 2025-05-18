@@ -4,6 +4,7 @@ import CartManager from "../../../data/CartManager";
 import Location from "../../../assets/images/location.png";
 import HttpHandler from "../../../data/HttpHandler";
 import Swal from "sweetalert2";
+import DataStorage from "../../../helper/DataStorage";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -54,7 +55,7 @@ const Cart = () => {
       const url = await HttpHandler.request(
         "th",
         "POST",
-        "32|nOdUNT5ZXuCtkwyvV6f0OM1KQmuS6dK8vs8QCdSF8f8142f2",
+        `${DataStorage.getToken()}`,
         json
       );
 

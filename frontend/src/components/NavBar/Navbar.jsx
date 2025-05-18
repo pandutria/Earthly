@@ -24,9 +24,9 @@
                 </div>
                 <div className="nav-text">
                     <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="" >About Us</a></li>
-                        <li><a href="">E-Commerce</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about" >About Us</a></li>
+                        <li><a href="#e-commerce">E-Commerce</a></li>
                     </ul>
                 </div>
                 <div className="transaction-container">

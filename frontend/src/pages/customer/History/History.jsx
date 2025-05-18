@@ -27,7 +27,7 @@ const History = () => {
       const url = await HttpHandler.request(
         "th",
         "GET",
-        "30|04vhca5YsNEmZEsnnhHwnNZG5BcD3IfwNKCY7qD2ffe5475f"
+        `${DataStorage.getToken()}`
       );
       const code = JSON.parse(url).code;
       const body = JSON.parse(url).body;
@@ -64,6 +64,7 @@ const History = () => {
         `td?transactionHeader=${headerId}`,
         "GET"
       );
+      
       const code = JSON.parse(url).code;
       const body = JSON.parse(url).body;
 
@@ -74,7 +75,7 @@ const History = () => {
 
         setHeader((prevHeader) => {
           const newHeader = [...prevHeader];
-          newHeader[index].details = detailData; // tambahkan data detail ke header tertentu
+          newHeader[index].details = detailData; 
           return newHeader;
         });
       }
@@ -109,7 +110,7 @@ const History = () => {
         product_id: selectedProduct.id,
         date: "2023-05-15",
       }
-      const url = await HttpHandler.request('review', "POST", "33|xOrGlCXA5nd91vLEamRMGfHPXQ9lS94u6l4QWaED3698ad12", json)
+      const url = await HttpHandler.request('review', "POST",  `${DataStorage.getToken()}`, json)
       const code = JSON.parse(url).code
 
       Swal.close()

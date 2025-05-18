@@ -3,6 +3,7 @@ import "./DetailProduct.css";
 import image1 from "../../../assets/images/1.png";
 import e from "../../../assets/images/e.png";
 import star1 from "../../../assets/images/star1.png";
+import circle from "../../../assets/images/circle.png";
 import checklist from "../../../assets/images/checklist.png";
 import spec from "../../../assets/images/spec.png";
 import { useNavigate, useParams } from "react-router-dom";
@@ -21,10 +22,12 @@ const DetailProduct = () => {
   const [category, setCategory] = useState("");
   const [products, useProducts] = useState([]);
   const navigate = useNavigate()
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     fecthProduct();
     fecthProducts();
+    fetchReviews()
   }, [params.id]);
 
   const fecthProduct = async () => {
@@ -56,6 +59,21 @@ const DetailProduct = () => {
     }
   };
 
+  const fetchReviews = async () => {
+  try {
+    const url = await HttpHandler.request("publicReview", "GET");
+    const code = JSON.parse(url).code;
+    const body = JSON.parse(url).body;
+
+    if (code === 200) {
+      const data = JSON.parse(body);
+      setReviews(data);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
   // const handleHeader = async () => {
   //   try {
   //     const url = await HttpHandler.request('')
@@ -63,6 +81,13 @@ const DetailProduct = () => {
   // }
 
   const handleToCart = () => {
+    Swal.fire({
+              title: 'Loading',
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+              }
+            });
     CartManager.addToCart({
       product_id: params.id,
       name: name,
@@ -71,6 +96,7 @@ const DetailProduct = () => {
       image: image,
       qty: 1,
     });
+    Swal.close()
 
     console.log(CartManager.getCart());
   };
@@ -127,8 +153,8 @@ const DetailProduct = () => {
         <div className="horizontal">
           <img src={e} alt="" />
           <div className="vertical">
-            <h1>Earthly</h1>
-            <h2>Jakarta Timur</h2>
+            <h5>Earthly</h5>
+            <h6>Jakarta Timur</h6>
             <div className="horizontal-text">
               <p>Top Rated Merchant</p>
               <p>Best Merchant</p>
@@ -177,8 +203,33 @@ const DetailProduct = () => {
         </div>
       </div>
       <hr />
+      <div className="review-product-section">
+  <h3>Review List</h3>
+  <div className="review-product-container">
+    {reviews.map((review, index) => (
+      <div className="review-product-item" key={index}>
+        <img src={star} alt="" />
+        <h2>{review.review}</h2>
+        <h3>{new Date(review.date).toLocaleString("en-GB", {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        })}</h3>
+        <div className="review-product-image">
+          <img src={circle} alt="" />
+          <p>{review.user.fullname}</p>
+        </div>
+        <hr />
+      </div>
+    ))}
+  </div>
+</div>
+
+
       <div className="product-section">
-        <h3>Related Product</h3>
+        <h3 style={{marginLeft: '7px'}}>Related Product</h3>
         <div className="product-container">
           {products.map((product, index) => (
             <div
