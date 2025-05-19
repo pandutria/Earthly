@@ -40,6 +40,7 @@ const SideBar = () => {
         <SidebarItem onClick={() => navigate("/main/admin")}  icon={Dashboard} text="Dashboard" active={location.pathname === "/main/admin"} />
         <SidebarItem onClick={() => navigate("/main/admin/category")}  icon={Category} text="Category" active={location.pathname === "/main/admin/category"} />
         <SidebarItem onClick={() => navigate("/main/admin/product")} icon={Product} text="Product" active={location.pathname === "/main/admin/product"}/>
+        <SidebarItem onClick={() => navigate("/main/admin/transaction")} icon={Product} text="Transaction" active={location.pathname === "/main/admin/transaction"}/>
       </div>
 
         <a href="" onClick={handleLogout}>
