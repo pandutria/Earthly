@@ -1,0 +1,92 @@
+:root {
+    --poppins-semibold: poppins-semibold;
+    --poppins-bold: poppins-bold;
+    --poppins-medium: poppins-medium;
+    --poppins-regular: poppins-regular;
+    --primary-color: #7B936F;
+    --secondary-color: #5d706c;
+    --krem-color: #f3ebe0;
+    --hint-color: #898989;
+    --gray-color: #494949;
+    --font-color: #393a37;
+    --bounce-animation: bounce 10s ease-in-out infinite;
+    --transition-hover: all ease-in-out 0.2s;
+  }
+  
+  @font-face {
+    font-family: poppins-semibold;
+    src: url("../../assets/font/poppins_semibold.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-bold;
+    src: url("../../assets/font/poppins_bold.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-medium;
+    src: url("../../assets/font/poppins_medium.ttf");
+  }
+  
+  @font-face {
+    font-family: poppins-regular;
+    src: url("../../assets/font/poppins_regular.ttf");
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: white;
+    overflow-x: hidden;
+    font-family: var(--poppins-regular);
+  }
+
+  .selected-row {
+  background-color: #f0f7ed !important;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-family: var(--poppins-medium);
+}
+
+.status-badge.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.completed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.done-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: var(--transition-hover);
+  font-family: var(--poppins-medium);
+  font-size: 13px;
+}
+
+.done-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.done-btn:hover:not(:disabled) {
+  background-color: #6a8260;
+}
+
+.category-table tbody tr {
+  cursor: pointer;
+}

@@ -11,7 +11,7 @@ class TransactionHeaderController extends Controller
 {
 
     public function publicIndex() {
-        return TransactionHeader::all();
+        return TransactionHeader::with('user')->get();
     }
 
     public function index() {
