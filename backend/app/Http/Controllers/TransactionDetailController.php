@@ -14,11 +14,13 @@ class TransactionDetailController extends Controller
             $query->where('transaction_header_id', $transactionHeaderId);
         }
 
-        return $query->with('product')->get();
+        return $query->with('product.category')->get();
+
     }
 
     public function show($id) {
-        $transactionDetail = TransactionDetail::with('product')->find($id);
+        $transactionDetail = TransactionDetail::with('product.category')->find($id);
+
 
     if (!$transactionDetail) {
         return response()->json(['error' => 'Transaction detail not found'], 404);

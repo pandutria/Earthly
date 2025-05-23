@@ -12,7 +12,6 @@ import Catalog from '../pages/customer/Catalog/Catalog';
 import DetailProduct from '../pages/customer/detailProduct/DetailProduct';
 import Cart from '../pages/customer/Cart/Cart';
 import History from '../pages/customer/History/History';
-import Dashboard from '../pages/admin/Main/Dashboard/Dashboard';
 import Transaction from '../pages/admin/Main/Transaction/Transaction';
 
 function Router() {
@@ -30,9 +29,9 @@ function Router() {
                  <Route path='/main/admin' element={<MainAdmin/>}/>
                  <Route path='/main/admin/category' element={<Category/>}/>
                  <Route path='/main/admin/product' element={<Product/>}/>
+                 <Route path='/main/admin/transaction' element={<Transaction/>}/>
                  <Route path='/admin/manage/category' element={<ManageCategory/>}/>
                  <Route path='/admin/manage/product' element={<ManageProduct/>}/>
-                 <Route path='/main/admin/transaction' element={<Transaction/>}/>
             </Routes>
         </BrowserRouter>
     );
