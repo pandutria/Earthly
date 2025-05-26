@@ -7,20 +7,19 @@ import wonder1 from "../../../assets/images/wonder1.png";
 import Eye from "../../../assets/images/eye.png";
 import Qty from "../../../assets/images/cartQty.png";
 import Pay from "../../../assets/images/pay.png";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import ReviewPopup from "../../../components/Review/ReviewPopup.jsx";
 
 const History = () => {
   const [header, setHeader] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-
   const navigateToDetailProduct = (id) => {
-    navigate(`/main/customer/product/${id}`)
-  }
+    navigate(`/main/customer/product/${id}`);
+  };
 
   const handleHeader = async () => {
     try {
@@ -50,21 +49,20 @@ const History = () => {
   }, []);
 
   const handleDetail = async (headerId, index) => {
-
     Swal.fire({
-          title: 'Loading',
-          allowOutsideClick: false,
-          didOpen: () => {
-            Swal.showLoading();
-          }
-        });
-    
+      title: "Loading",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+
     try {
       const url = await HttpHandler.request(
         `td?transactionHeader=${headerId}`,
         "GET"
       );
-      
+
       const code = JSON.parse(url).code;
       const body = JSON.parse(url).body;
 
@@ -75,7 +73,7 @@ const History = () => {
 
         setHeader((prevHeader) => {
           const newHeader = [...prevHeader];
-          newHeader[index].details = detailData; 
+          newHeader[index].details = detailData;
           return newHeader;
         });
       }
@@ -94,38 +92,41 @@ const History = () => {
     return "Rp. " + number.toLocaleString("id-ID") + ",00";
   };
 
-   const handleSubmitReview = async (reviewText) => {
-
+  const handleSubmitReview = async (reviewText) => {
     Swal.fire({
-          title: 'Loading',
-          allowOutsideClick: false,
-          didOpen: () => {
-            Swal.showLoading();
-          }
-        });
+      title: "Loading",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
 
     try {
       const json = {
         review: reviewText,
         product_id: selectedProduct.id,
         date: "2023-05-15",
-      }
-      const url = await HttpHandler.request('review', "POST",  `${DataStorage.getToken()}`, json)
-      const code = JSON.parse(url).code
+      };
+      const url = await HttpHandler.request(
+        "review",
+        "POST",
+        `${DataStorage.getToken()}`,
+        json
+      );
+      const code = JSON.parse(url).code;
 
-      Swal.close()
+      Swal.close();
 
       // console.log(code)
 
       if (code === 201) {
         // alert("berhasil")
         Swal.fire("Success", "Create review", "success");
-      } 
+      }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   };
-
 
   return (
     <div className="section-history">
@@ -164,40 +165,58 @@ const History = () => {
           <hr />
 
           {item.details &&
-            item.details.map((detail, i) => (
-              <div className="item-history-detail" key={i}>
-                <img src={detail.product.image_url} alt={detail.product.name} />
-                <div className="item-history-detail-text-container">
-                  <div className="item-history-detail-text">
-                    <h2>{detail.product.name}</h2>
-                    <p>{detail.product.description}</p>
-                    <div className="vertical">
-                      <div className="view" style={{cursor: 'pointer'}} onClick={() => navigateToDetailProduct(detail.product.id)}>
-                        <img src={Eye} alt="" />
-                        <p style={{ color: "#67AE6E" }}>View Product</p>
+            item.details.map(
+              (detail, i) =>
+                detail.product ? (
+                  <div className="item-history-detail" key={i}>
+                    <img
+                      src={detail.product.image_url}
+                      alt={detail.product.name}
+                    />
+                    <div className="item-history-detail-text-container">
+                      <div className="item-history-detail-text">
+                        <h2>{detail.product.name}</h2>
+                        <p>{detail.product.description}</p>
+                        <div className="vertical">
+                          <div
+                            className="view"
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              navigateToDetailProduct(detail.product.id)
+                            }
+                          >
+                            <img src={Eye} alt="" />
+                            <p style={{ color: "#67AE6E" }}>View Product</p>
+                          </div>
+                          <div className="view">
+                            <img src={Qty} alt="" />
+                            <p style={{ color: "#67AE6E" }}>
+                              {detail.qty} Unit
+                            </p>
+                          </div>
+                          <div className="view">
+                            <img src={Pay} alt="" />
+                            <p style={{ color: "#67AE6E" }}>
+                              {formatPrice(detail.price)}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="view">
-                        <img src={Qty} alt="" />
-                        <p style={{ color: "#67AE6E" }}>{detail.qty} Unit</p>
-                      </div>
-                      <div className="view">
-                        <img src={Pay} alt="" />
-                        <p style={{ color: "#67AE6E" }}>
-                          {formatPrice(detail.price)}
-                        </p>
-                      </div>
+                      <button
+                        onClick={() => {
+                          setSelectedProduct(detail.product);
+                          setShowPopup(true);
+                        }}
+                      >
+                        Add Review
+                      </button>
                     </div>
                   </div>
-                  <button onClick={() => {
-                      setSelectedProduct(detail.product);
-                      setShowPopup(true);
-                    }}>Add Review</button>
-                </div>
-              </div>
-            ))}
+                ) : null // tidak render jika product null
+            )}
         </div>
       ))}
-       {showPopup && selectedProduct && (
+      {showPopup && selectedProduct && (
         <ReviewPopup
           product={selectedProduct}
           onClose={() => setShowPopup(false)}

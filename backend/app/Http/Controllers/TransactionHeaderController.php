@@ -15,8 +15,12 @@ class TransactionHeaderController extends Controller
     }
 
     public function index() {
+        $user = Auth::user();
 
-        return TransactionHeader::with('user')->get();
+        return TransactionHeader::with('user')
+            ->where('user_id', $user->id)
+            ->get();
+
     }
 
     public function show($id) {

@@ -187,37 +187,52 @@ const updateTransactionStatus = async (id) => {
           </table>
         </div>
 
-        {selectedTransaction && (
-          <>
-            <h2 style={{ marginTop: "30px" }}>Transaction Details</h2>
-            <p>{transactionDetails.length} items in this transaction</p>
-            
-            <div className="transaction-details-container">
-              <table className="transaction-table">
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Product</th>
-                    <th>Category</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactionDetails.map((item, index) => (
-                    <tr key={index}>
-                      <td>{"TD " + item.id}</td>
-                      <td>{item.product.name}</td>
-                      <td>{item.product.category.name}</td>
-                      <td>{item.qty}</td>
-                      <td>{formatPrice(item.price)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
+       {selectedTransaction && (
+  <>
+    <h2 style={{ marginTop: "30px" }}>Transaction Details</h2>
+    <p>{transactionDetails.length} items in this transaction</p>
+    
+    <div className="transaction-details-container">
+      <table className="transaction-table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Qty</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactionDetails.map((item, index) => (
+            <tr key={index}>
+              <td>{"TD " + item.id}</td>
+              <td>
+                <div className="container-product">
+                  <img 
+                    src={item.product.image_url} 
+                    alt={item.product.name} 
+                    onError={(e) => {
+                      e.target.onerror = null; 
+                      e.target.src = 'path-to-default-image.png'
+                    }}
+                  />
+                  <div>
+                    <h1>{item.product.name}</h1>
+                    <p>{item.product.category.name}</p>
+                  </div>
+                </div>
+              </td>
+              <td>{item.product.category.name}</td>
+              <td>{item.qty}</td>
+              <td>{formatPrice(item.price)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </>
+)}
       </div>
     </div>
   );
