@@ -2,6 +2,7 @@
     import "./Navbar.css"
     import Logo from "../../assets/images/logo.png";
     import Cart from "../../assets/images/cart.png";
+    import Logout from "../../assets/images/image.png";
     import History from "../../assets/images/history.png";
     import { useNavigate } from "react-router-dom";
 
@@ -10,6 +11,10 @@
 
         const navigateToCart = () => {
             navigate("/main/customer/cart")
+        }
+
+        const navigateToLog = () => {
+            navigate("/")
         }
 
         const navigateToHistory = () => {
@@ -30,6 +35,7 @@
                     </ul>
                 </div>
                 <div className="transaction-container">
+                    <img src={Logout} alt="" onClick={navigateToLog} />
                     <img src={Cart} alt="" onClick={navigateToCart} />
                     <img src={History} alt=""  onClick={navigateToHistory}/>
                 </div>
